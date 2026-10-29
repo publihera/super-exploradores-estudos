@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Super Exploradores — Estudo Lúdico de ICA & Language Arts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- TOP GAMIFICATION & STICKY SCROLLSPY NAV -->
+  <header class="top-header">
+    <div class="header-inner">
+      <a href="#hero" class="brand-logo" aria-label="Início Super Exploradores">
+        <span class="brand-mascot" aria-hidden="true">🚀</span>
+        <div>
+          <span class="brand-title">Super Exploradores</span>
+          <span class="brand-subtitle">ICA: Ciências &amp; Language Arts</span>
+        </div>
+      </a>
+
+      <div class="xp-panel" aria-live="polite" role="status">
+        <div class="xp-stats">
+          <span class="star-badge">⭐ <strong id="xp-count">0</strong> Estrelas</span>
+          <label for="study-progress" class="progress-label">Progresso da Aventura: <span id="progress-percent">0%</span></label>
+        </div>
+        <progress id="study-progress" max="100" value="0"></progress>
+      </div>
+
+      <button type="button" id="sound-toggle" class="btn-icon" aria-pressed="true" title="Ativar/Desativar sons e voz em inglês">
+        🔊 Voz &amp; Sons: ON
+      </button>
+    </div>
+
+    <nav class="scrollspy-nav" aria-label="Missões de Estudo">
+      <a href="#mundo-1" class="nav-pill">🫀 1. Corpo &amp; Respiração</a>
+      <a href="#mundo-2" class="nav-pill">🍎 2. Saúde, Stamina &amp; Pulso</a>
+      <a href="#mundo-3" class="nav-pill">🕌 3. Unit 6: In Istanbul</a>
+      <a href="#mundo-4" class="nav-pill">🎭 4. Unit 7: The Story Teller</a>
+      <a href="#mundo-5" class="nav-pill">🔮 5. Unit 8: Museum of the Future</a>
+      <a href="#simulado" class="nav-pill nav-pill-quiz">🏆 6. Simulado (15 Questões)</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-banner">
+      <div class="hero-content">
+        <div class="hero-badge">✨ Aventura Interativa de Estudos</div>
+        <h1>Aprenda Ciências e Inglês Brincando!</h1>
+        <p class="hero-lead">
+          Explore o corpo humano, descubra como os pulmões e o coração funcionam, viaje por Istambul, suba no palco das histórias e visite o Museu do Futuro! Clique nos cartões para ouvir a pronúncia em inglês 🔊 e ganhe estrelas ⭐ em cada atividade!
+        </p>
+        <div class="hero-actions">
+          <a href="#mundo-1" class="btn-primary">Começar Aventura 🎮</a>
+          <a href="#revisao-rapida" class="btn-secondary">⚡ Revisão Rápida</a>
+          <a href="#simulado" class="btn-accent">Ir para o Simulado (15 Questões) 🏆</a>
+        </div>
+      </div>
+
+      <div class="hero-art-card">
+        <img src="assets/hero-body.png" alt="Criança explorando o corpo humano com lupa mágica e órgãos sorridentes" class="hero-illustration" id="hero-img" />
+        <div class="floating-sticker sticker-top">🧠 Brain = Cérebro!</div>
+        <div class="floating-sticker sticker-bottom">❤️ Heart = Coração!</div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         MUNDO 1: ICA — CIÊNCIAS E SAÚDE (CORPO HUMANO & SISTEMA RESPIRATÓRIO)
+         ================================================================= -->
+    <section id="mundo-1" class="study-section theme-sky">
+      <div class="section-header">
+        <span class="part-tag">Parte 1 — ICA: Ciências e Saúde</span>
+        <h2>1. The Human Body &amp; 2. The Respiratory System</h2>
+        <p class="section-intro">
+          O corpo humano possui diferentes órgãos, e cada um realiza uma função importante! Clique nas partes do boneco ou nos cartões para explorar, ouvir em inglês e ganhar estrelas.
+        </p>
+      </div>
+
+      <!-- 1. THE HUMAN BODY: INTERACTIVE EXPLORER + CARDS -->
+      <div class="sub-module">
+        <div class="module-title-row">
+          <h3>🧍‍♂️ 1. The Human Body — O Corpo Humano (12 Órgãos e Partes)</h3>
+          <span class="hint-chip">👆 Clique no boneco ou nos cartões para ouvir em inglês!</span>
+        </div>
+
+        <div class="body-explorer-grid">
+          <!-- Interactive SVG Kids Character -->
+          <div class="body-svg-stage">
+            <svg viewBox="0 0 360 520" class="kids-body-svg" role="img" aria-label="Ilustração infantil interativa do corpo humano">
+              <defs>
+                <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#e0f2fe" />
+                  <stop offset="100%" stop-color="#bae6fd" stop-opacity="0.3" />
+                </radialGradient>
+              </defs>
+              <circle cx="180" cy="260" r="165" fill="url(#bgGlow)" />
+
+              <!-- Legs -->
+              <g class="svg-organ-spot" data-organ="Legs" tabindex="0" role="button" aria-label="Legs - Pernas">
+                <rect x="132" y="325" width="36" height="135" rx="18" fill="#fdba74" stroke="#9a3412" stroke-width="3" />
+                <rect x="192" y="325" width="36" height="135" rx="18" fill="#fdba74" stroke="#9a3412" stroke-width="3" />
+                <!-- Cute shoes -->
+                <path d="M122 455 h48 a10 10 0 0 1 10 10 v10 h-68 v-10 a10 10 0 0 1 10 -10 z" fill="#ef4444" stroke="#7f1d1d" stroke-width="3" />
+                <path d="M190 455 h48 a10 10 0 0 1 10 10 v10 h-68 v-10 a10 10 0 0 1 10 -10 z" fill="#ef4444" stroke="#7f1d1d" stroke-width="3" />
+              </g>
+
+              <!-- Arms -->
+              <g class="svg-organ-spot" data-organ="Arms" tabindex="0" role="button" aria-label="Arms - Braços">
+                <rect x="68" y="175" width="36" height="130" rx="18" transform="rotate(12 86 175)" fill="#fdba74" stroke="#9a3412" stroke-width="3" />
+                <rect x="256" y="175" width="36" height="130" rx="18" transform="rotate(-12 274 175)" fill="#fdba74" stroke="#9a3412" stroke-width="3" />
+              </g>
+
+              <!-- Torso / Shirt -->
+              <rect x="112" y="165" width="136" height="175" rx="28" fill="#ffffff" stroke="#0284c7" stroke-width="4" />
+
+              <!-- Bones Badge inside leg/arm area -->
+              <g class="svg-organ-spot" data-organ="Bones" tabindex="0" role="button" aria-label="Bones - Ossos">
+                <rect x="142" y="355" width="16" height="75" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="2.5" />
+                <circle cx="144" cy="355" r="7" fill="#f8fafc" stroke="#64748b" stroke-width="2" />
+                <circle cx="156" cy="355" r="7" fill="#f8fafc" stroke="#64748b" stroke-width="2" />
+                <circle cx="144" cy="430" r="7" fill="#f8fafc" stroke="#64748b" stroke-width="2" />
+                <circle cx="156" cy="430" r="7" fill="#f8fafc" stroke="#64748b" stroke-width="2" />
+              </g>
+
+              <!-- Muscles Badge -->
+              <g class="svg-organ-spot" data-organ="Muscles" tabindex="0" role="button" aria-label="Muscles - Músculos">
+                <ellipse cx="210" cy="390" rx="14" ry="34" fill="#fb7185" stroke="#9f1239" stroke-width="2.5" />
+                <path d="M204 372 q6 18 0 36 M215 372 q-6 18 0 36" stroke="#ffe4e6" stroke-width="2" fill="none" />
+              </g>
+
+              <!-- Head -->
+              <g class="svg-organ-spot" data-organ="Head" tabindex="0" role="button" aria-label="Head - Cabeça">
+                <circle cx="180" cy="92" r="64" fill="#fed7aa" stroke="#9a3412" stroke-width="3.5" />
+                <!-- Hair -->
+                <path d="M118 78 c10 -50 114 -50 124 0 c-20 -18 -45 -22 -62 -20 c-20 -2 -42 2 -62 20 z" fill="#451a03" />
+                <!-- Eyes -->
+                <circle cx="156" cy="92" r="6" fill="#1e293b" />
+                <circle cx="204" cy="92" r="6" fill="#1e293b" />
+                <circle cx="154" cy="90" r="2" fill="#ffffff" />
+                <circle cx="202" cy="90" r="2" fill="#ffffff" />
+              </g>
+
+              <!-- Brain -->
+              <g class="svg-organ-spot" data-organ="Brain" tabindex="0" role="button" aria-label="Brain - Cérebro">
+                <path d="M150 58 c-8 -12 6 -26 20 -22 c6 -8 20 -8 24 0 c14 -4 26 10 18 22 c6 10 -6 18 -18 16 c-8 4 -18 4 -26 0 c-12 2 -24 -6 -18 -16 z" fill="#f472b6" stroke="#9d174d" stroke-width="2.5" />
+                <path d="M180 38 v34 M164 48 q8 6 12 0 M196 48 q-8 6 -12 0" stroke="#9d174d" stroke-width="2" fill="none" />
+              </g>
+
+              <!-- Nose -->
+              <g class="svg-organ-spot" data-organ="Nose" tabindex="0" role="button" aria-label="Nose - Nariz">
+                <ellipse cx="180" cy="104" rx="9" ry="7" fill="#fb923c" stroke="#9a3412" stroke-width="2" />
+              </g>
+
+              <!-- Mouth -->
+              <g class="svg-organ-spot" data-organ="Mouth" tabindex="0" role="button" aria-label="Mouth - Boca">
+                <path d="M162 122 q18 18 36 0 z" fill="#ef4444" stroke="#7f1d1d" stroke-width="2.5" />
+                <path d="M168 123 h24" stroke="#ffffff" stroke-width="3" />
+              </g>
+
+              <!-- Trachea -->
+              <g class="svg-organ-spot" data-organ="Trachea" tabindex="0" role="button" aria-label="Trachea - Traqueia">
+                <rect x="172" y="148" width="16" height="54" rx="6" fill="#38bdf8" stroke="#0369a1" stroke-width="2.5" />
+                <line x1="174" y1="160" x2="186" y2="160" stroke="#e0f2fe" stroke-width="2" />
+                <line x1="174" y1="172" x2="186" y2="172" stroke="#e0f2fe" stroke-width="2" />
+                <line x1="174" y1="184" x2="186" y2="184" stroke="#e0f2fe" stroke-width="2" />
+              </g>
+
+              <!-- Lungs -->
+              <g class="svg-organ-spot" data-organ="Lungs" tabindex="0" role="button" aria-label="Lungs - Pulmões">
+                <path d="M168 195 c-26 -8 -42 15 -40 48 c2 22 24 26 38 14 z" fill="#60a5fa" stroke="#1d4ed8" stroke-width="3" />
+                <path d="M192 195 c26 -8 42 15 40 48 c-2 22 -24 26 -38 14 z" fill="#60a5fa" stroke="#1d4ed8" stroke-width="3" />
+              </g>
+
+              <!-- Heart -->
+              <g class="svg-organ-spot" data-organ="Heart" tabindex="0" role="button" aria-label="Heart - Coração">
+                <path d="M185 222 c-8 -12 -24 -6 -24 8 c0 12 24 26 24 26 s24 -14 24 -26 c0 -14 -16 -20 -24 -8 z" fill="#ef4444" stroke="#991b1b" stroke-width="2.5" />
+              </g>
+
+              <!-- Stomach -->
+              <g class="svg-organ-spot" data-organ="Stomach" tabindex="0" role="button" aria-label="Stomach - Estômago">
+                <path d="M162 272 c22 -10 46 6 40 32 c-5 20 -35 22 -46 6 c-8 -12 8 -20 6 -38 z" fill="#facc15" stroke="#a16207" stroke-width="3" />
+              </g>
+            </svg>
+
+            <!-- Active Organ Spotlight Display -->
+            <div id="organ-spotlight" class="organ-spotlight" aria-live="polite">
+              <div class="spotlight-icon" id="spot-icon">🧠</div>
+              <div class="spotlight-text">
+                <div class="spotlight-titles">
+                  <strong id="spot-en">Brain</strong>
+                  <span class="spot-arrow">→</span>
+                  <span id="spot-pt">Cérebro</span>
+                </div>
+                <p id="spot-fn">Controla pensamentos e movimentos.</p>
+              </div>
+              <button type="button" id="spot-speak-btn" class="btn-mini-audio" aria-label="Ouvir pronúncia">🔊 Ouvir</button>
+            </div>
+          </div>
+
+          <!-- 12 Cards Grid (Complete Table Coverage) -->
+          <div class="organs-cards-grid" id="organs-grid">
+            <!-- Populated and interactive via HTML for instant rendering + SEO/accessibility -->
+            <button type="button" class="organ-card active" data-organ="Head" data-en="Head" data-pt="Cabeça" data-fn="Protege o cérebro, que controla o corpo." data-icon="🙂">
+              <span class="organ-emoji">🙂</span>
+              <div class="organ-info">
+                <strong>Head <span class="audio-hint">🔊</span></strong>
+                <span class="organ-pt">Cabeça</span>
+                <p>Protege o cérebro, que controla o corpo.</p>
+              </div>
+            </button>
+
+            <button type="button" class="organ-card" data-organ="Brain" data-en="Brain" data-pt="Cérebro" data-fn="Controla pensamentos e movimentos." data-icon="🧠">
+              <span class="organ-emoji">🧠</span>
+              <div class="organ-info">
+                <strong>Brain <span class="audio-hint">🔊</span></strong>
+                <span class="organ-pt">Cérebro</span>
+                <p>Controla pensamentos e movimentos.</p>
+              </div>
+            </button>
+
+            <button type="button" class="organ-card" data-organ="Heart" data-en="Heart" data-pt="Coração" data-fn="Bombeia o sangue." data-icon="❤️">
+              <span class="organ-emoji">❤️</span>
+              <div class="organ-info">
+                <strong>Heart <span class="audio-hint">🔊</span></strong>
+                <span class="organ-pt">Coração</span>
+                <p>Bombeia o sangue.</p>
+              </div>
+            </button>
+
+            <button type="button" class="organ-card" data-organ="Lungs" data-en="Lungs" data-pt="Pulmões" data-fn="Ajudam na respiração." data-icon="🫁">
+              <span class="organ-emoji">🫁</span>
+              <div class="organ-info">
+                <strong>Lungs <span class="audio-hint">🔊</span></strong>
+                <span class="organ-pt">Pulmões</span>
+                <p>Ajudam na respiração.</p>
+              </div>
+            </button>
+
+            <button type="button" class="organ-card" data-organ="Nose" data-en="Nose" data-pt="Nariz" data-fn="Ajuda a respirar e sentir cheiros." data-icon="👃">
+              <span class="organ-emoji">👃</span>
+              <div class="organ-info">
+                <strong>Nose <span class="audio-hint">🔊</span></strong>
+                <span class="organ-pt">Nariz</span>
+                <p>Ajuda a respirar e sentir cheiros.</p>
+              </div>
+            </button>
+
+            <button type="button" class="organ-card" data-organ="Mouth" data-en="Mouth" data-pt="Boca" data-fn="Ajuda a comer e falar." data-icon="👄">
+              <span class="organ-emoji">👄</span>
+              <div class="organ-info">
+                <strong>Mouth <span class="audio-hint">🔊</span></strong>
+                <span class="organ-pt">Boca</span>
+                <p>Ajuda a comer e falar.</p>
+              </div>
+            </button>
+
+            <button type="button" class="organ-card" data-organ="Trachea" data-en="Trachea" data-pt="Traqueia" data-fn="Conduz o ar até os brônquios." data-icon="🌬️">
+              <span class="organ-emoji">🌬️</span>
+              <div class="organ-info">
+                <strong>Trachea <span class="audio-hint">🔊</span></strong>
+                <span class="organ-pt">Traqueia</span>
+                <p>Conduz o ar até os brônquios.</p>
+              </div>
+            </button>
+
+            <button type="button" class="organ-card" data-organ="Stomach" data-en="Stomach" data-pt="Estômago" data-fn="Ajuda na digestão dos alimentos." data-icon="🍽️">
+              <span class="organ-emoji">🍽️</span>
+              <div class="organ-info">
+                <strong>Stomach <span class="audio-hint">🔊</span></strong>
+                <span class="organ-pt">Estômago</span>
+                <p>Ajuda na digestão dos alimentos.</p>
+              </div>
+            </button>
+
+            <button type="button" class="organ-card" data-organ="Arms" data-en="Arms" data-pt="Braços" data-fn="Ajudam a levantar e carregar objetos." data-icon="💪">
+              <span class="organ-emoji">💪</span>
+              <div class="organ-info">
+                <strong>Arms <span class="audio-hint">🔊</span></strong>
+                <span class="organ-pt">Braços</span>
+                <p>Ajudam a levantar e carregar objetos.</p>
+              </div>
+            </button>
+
+            <button type="button" class="organ-card" data-organ="Legs" data-en="Legs" data-pt="Pernas" data-fn="Ajudam a ficar em pé, andar e correr." data-icon="🦵">
+              <span class="organ-emoji">🦵</span>
+              <div class="organ-info">
+                <strong>Legs <span class="audio-hint">🔊</span></strong>
+                <span class="organ-pt">Pernas</span>
+                <p>Ajudam a ficar em pé, andar e correr.</p>
+              </div>
+            </button>
+
+            <button type="button" class="organ-card" data-organ="Muscles" data-en="Muscles" data-pt="Músculos" data-fn="Permitem os movimentos." data-icon="🏃">
+              <span class="organ-emoji">🏃</span>
+              <div class="organ-info">
+                <strong>Muscles <span class="audio-hint">🔊</span></strong>
+                <span class="organ-pt">Músculos</span>
+                <p>Permitem os movimentos.</p>
+              </div>
+            </button>
+
+            <button type="button" class="organ-card" data-organ="Bones" data-en="Bones" data-pt="Ossos" data-fn="Sustentam e protegem o corpo." data-icon="🦴">
+              <span class="organ-emoji">🦴</span>
+              <div class="organ-info">
+                <strong>Bones <span class="audio-hint">🔊</span></strong>
+                <span class="organ-pt">Ossos</span>
+                <p>Sustentam e protegem o corpo.</p>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. THE RESPIRATORY SYSTEM -->
+      <div class="sub-module">
+        <div class="module-title-row">
+          <h3>🫁 2. The Respiratory System — Sistema Respiratório</h3>
+          <span class="badge-tag">Oxygen (O₂) &amp; Carbon Dioxide (CO₂)</span>
+        </div>
+
+        <p class="module-desc">
+          O sistema respiratório permite que o corpo receba <strong>oxigênio (oxygen)</strong> e elimine <strong>gás carbônico (carbon dioxide)</strong>.
+        </p>
+
+        <div class="respiratory-interactive-grid">
+          <!-- Step-by-step interactive simulator -->
+          <div class="breathing-simulator-card">
+            <h4>🌬️ Simulador: Como funciona a respiração?</h4>
+            <div class="lungs-anim-box" id="lungs-anim-box">
+              <div class="air-particles" id="air-particles">✨ O₂ Entrando!</div>
+              <div class="lungs-visual" id="lungs-visual">🫁</div>
+              <div class="breath-status" id="breath-status">Clique nos botões ou nos 5 passos abaixo!</div>
+            </div>
+            <div class="breath-controls">
+              <button type="button" class="btn-breath inhale" id="btn-inhale">
+                ⬆️ <strong>Inhale</strong> (Inspirar / Puxar o ar - Oxygen)
+              </button>
+              <button type="button" class="btn-breath exhale" id="btn-exhale">
+                ⬇️ <strong>Exhale</strong> (Expirar / Soltar o ar - Carbon Dioxide)
+              </button>
+            </div>
+
+            <ol class="respiratory-steps">
+              <li class="resp-step" tabindex="0" data-step="1">
+                <span class="step-num">1</span>
+                <span>O ar entra pelo <strong>nariz (nose)</strong> ou pela <strong>boca (mouth)</strong>.</span>
+              </li>
+              <li class="resp-step" tabindex="0" data-step="2">
+                <span class="step-num">2</span>
+                <span>O ar passa pela <strong>traqueia (trachea)</strong> e chega aos <strong>pulmões (lungs)</strong>.</span>
+              </li>
+              <li class="resp-step" tabindex="0" data-step="3">
+                <span class="step-num">3</span>
+                <span>Nos pulmões, o <strong>oxigênio (oxygen)</strong> passa para o sangue.</span>
+              </li>
+              <li class="resp-step" tabindex="0" data-step="4">
+                <span class="step-num">4</span>
+                <span>O corpo utiliza o <strong>oxigênio</strong> para funcionar.</span>
+              </li>
+              <li class="resp-step" tabindex="0" data-step="5">
+                <span class="step-num">5</span>
+                <span>Na expiração (<strong>exhale</strong>), eliminamos o ar rico em <strong>gás carbônico (carbon dioxide)</strong>.</span>
+              </li>
+            </ol>
+          </div>
+
+          <!-- Vocabulário importante + Exemplos + Lembre-se -->
+          <div class="respiratory-vocab-col">
+            <h4>📚 Vocabulário Importante (Clique para ouvir 🔊)</h4>
+            <div class="vocab-pills-list">
+              <button type="button" class="vocab-chip" data-speak="Breathe"><strong>Breathe:</strong> respirar</button>
+              <button type="button" class="vocab-chip" data-speak="Inhale"><strong>Inhale:</strong> inspirar, puxar o ar</button>
+              <button type="button" class="vocab-chip" data-speak="Exhale"><strong>Exhale:</strong> expirar, soltar o ar</button>
+              <button type="button" class="vocab-chip" data-speak="Lungs"><strong>Lungs:</strong> pulmões</button>
+              <button type="button" class="vocab-chip" data-speak="Oxygen"><strong>Oxygen:</strong> oxigênio</button>
+              <button type="button" class="vocab-chip" data-speak="Carbon dioxide"><strong>Carbon dioxide:</strong> gás carbônico</button>
+              <button type="button" class="vocab-chip" data-speak="Respiratory system"><strong>Respiratory system:</strong> sistema respiratório</button>
+            </div>
+
+            <h4>💬 Exemplos Importantes</h4>
+            <div class="example-cards">
+              <button type="button" class="sentence-card" data-speak="We breathe air.">
+                <span class="en-line">🔊 <strong>We breathe air.</strong></span>
+                <span class="pt-line">Nós respiramos ar.</span>
+              </button>
+              <button type="button" class="sentence-card" data-speak="The lungs help us breathe.">
+                <span class="en-line">🔊 <strong>The lungs help us breathe.</strong></span>
+                <span class="pt-line">Os pulmões nos ajudam a respirar.</span>
+              </button>
+              <button type="button" class="sentence-card" data-speak="Exercise makes us breathe faster.">
+                <span class="en-line">🔊 <strong>Exercise makes us breathe faster.</strong></span>
+                <span class="pt-line">O exercício faz com que respiremos mais rápido.</span>
+              </button>
+            </div>
+
+            <div class="callout-box callout-remember">
+              <span class="callout-icon">💡</span>
+              <div>
+                <strong>Lembre-se:</strong> durante a atividade física, os músculos precisam de mais oxigênio (<em>oxygen</em>). Por isso, a respiração e os batimentos cardíacos podem ficar mais rápidos!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         MUNDO 2: ICA — HÁBITOS SAUDÁVEIS, STAMINA, PULSO & FACT SHEET
+         ================================================================= -->
+    <section id="mundo-2" class="study-section theme-mint">
+      <div class="section-header">
+        <span class="part-tag">Parte 1 — ICA: Saúde, Energia e Esportes</span>
+        <h2>3. Healthy Habits, 4. Stamina, 5. Pulse &amp; 6. Fact Sheet</h2>
+        <p class="section-intro">
+          Hábitos saudáveis ajudam o corpo a funcionar bem e dão mais energia para brincar, estudar e praticar esportes!
+        </p>
+      </div>
+
+      <div class="illustration-showcase">
+        <img src="assets/healthy-stamina.png" alt="Crianças praticando exercícios no parque com hábitos saudáveis, água e frutas" class="section-illustration" />
+        <div class="showcase-caption">
+          <h4>🌟 Super Energia no Dia a Dia!</h4>
+          <p>Quando cuidamos do nosso corpo com água, alimentos saudáveis, exercício e sono, nossa <strong>stamina</strong> (resistência física) fica incrível!</p>
+        </div>
+      </div>
+
+      <!-- 3. HEALTHY HABITS AND WELL-BEING -->
+      <div class="sub-module">
+        <h3>🥗 3. Healthy Habits and Well-being — Hábitos Saudáveis</h3>
+        <div class="habits-grid">
+          <div class="habit-card good-habit" data-speak="You should drink water every day.">
+            <div class="habit-icon">💧</div>
+            <h4>Drink water — Beber água</h4>
+            <p class="habit-why">A água ajuda a manter o corpo hidratado.</p>
+            <div class="habit-example">
+              <strong>🔊 You should drink water every day.</strong>
+              <span>Você deve beber água todos os dias.</span>
+            </div>
+          </div>
+
+          <div class="habit-card good-habit" data-speak="You should eat fruit and vegetables.">
+            <div class="habit-icon">🍎🥦</div>
+            <h4>Eat healthy food — Comer alimentos saudáveis</h4>
+            <p class="habit-why">Frutas, verduras e refeições equilibradas ajudam a manter a saúde.</p>
+            <div class="habit-example">
+              <strong>🔊 You should eat fruit and vegetables.</strong>
+              <span>Você deve comer frutas e verduras.</span>
+            </div>
+          </div>
+
+          <div class="habit-card good-habit" data-speak="You should exercise regularly.">
+            <div class="habit-icon">🚴‍♀️⚽</div>
+            <h4>Exercise regularly — Praticar exercícios regularmente</h4>
+            <p class="habit-why">Caminhar, correr, dançar e andar de bicicleta são atividades físicas.</p>
+            <div class="habit-example">
+              <strong>🔊 You should exercise regularly.</strong>
+              <span>Você deve se exercitar regularmente.</span>
+            </div>
+          </div>
+
+          <div class="habit-card good-habit" data-speak="You should get enough sleep.">
+            <div class="habit-icon">😴🌙</div>
+            <h4>Sleep well — Dormir bem</h4>
+            <p class="habit-why">O sono ajuda o corpo a descansar e se recuperar.</p>
+            <div class="habit-example">
+              <strong>🔊 You should get enough sleep.</strong>
+              <span>Você deve dormir o suficiente.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="avoid-habits-box">
+          <h4>🚫 Também devemos evitar hábitos prejudiciais (Shouldn't):</h4>
+          <div class="avoid-grid">
+            <button type="button" class="avoid-card" data-speak="You shouldn't skip meals.">
+              <span class="avoid-badge">❌ Avoid</span>
+              <strong>🔊 You shouldn't skip meals.</strong>
+              <span>Você não deveria pular refeições.</span>
+            </button>
+            <button type="button" class="avoid-card" data-speak="You shouldn't exercise without resting.">
+              <span class="avoid-badge">❌ Avoid</span>
+              <strong>🔊 You shouldn't exercise without resting.</strong>
+              <span>Você não deveria praticar exercícios sem descansar.</span>
+            </button>
+            <button type="button" class="avoid-card" data-speak="You shouldn't forget to drink water.">
+              <span class="avoid-badge">❌ Avoid</span>
+              <strong>🔊 You shouldn't forget to drink water.</strong>
+              <span>Você não deveria esquecer de beber água.</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. STAMINA — RESISTÊNCIA FÍSICA -->
+      <div class="sub-module">
+        <div class="stamina-split">
+          <div class="stamina-info">
+            <h3>⚡ 4. Stamina — Resistência Física</h3>
+            <p class="module-desc">
+              <strong>Stamina</strong> é a capacidade de manter uma atividade física por mais tempo sem ficar cansado rapidamente.
+            </p>
+            <div class="callout-box callout-example">
+              <span>🚴</span>
+              <p><strong>Por exemplo:</strong> uma criança que consegue correr ou pedalar por vários minutos, mantendo o ritmo, está usando sua resistência física (<em>stamina</em>).</p>
+            </div>
+
+            <h4>🔋 Bateria da Stamina: O que ajuda a melhorar? (Marque cada item!)</h4>
+            <div class="stamina-checklist" id="stamina-checklist">
+              <label class="check-item"><input type="checkbox" class="stamina-check" checked /> 🏃 Praticar atividades físicas regularmente.</label>
+              <label class="check-item"><input type="checkbox" class="stamina-check" checked /> 😴 Dormir bem.</label>
+              <label class="check-item"><input type="checkbox" class="stamina-check" checked /> 💧 Beber água.</label>
+              <label class="check-item"><input type="checkbox" class="stamina-check" checked /> 🥗 Comer de forma equilibrada.</label>
+              <label class="check-item"><input type="checkbox" class="stamina-check" checked /> 📈 Aumentar a intensidade dos exercícios aos poucos.</label>
+              <label class="check-item"><input type="checkbox" class="stamina-check" checked /> ⏸️ Fazer pausas e respeitar os limites do corpo.</label>
+            </div>
+            <div class="stamina-meter-wrap">
+              <span>Nível de Stamina: <strong id="stamina-level-text">100% Super Atleta! 🏆</strong></span>
+              <div class="stamina-bar-bg"><div class="stamina-bar-fill" id="stamina-bar-fill" style="width: 100%"></div></div>
+            </div>
+          </div>
+
+          <div class="stamina-vocab-box">
+            <h4>📖 Vocabulário de Stamina (Clique para ouvir 🔊)</h4>
+            <div class="vocab-table-cards">
+              <button type="button" class="mini-vocab-btn" data-speak="Stamina"><strong>Stamina</strong> <span>Resistência física</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Strength"><strong>Strength</strong> <span>Força</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Endurance"><strong>Endurance</strong> <span>Resistência</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Tired"><strong>Tired</strong> <span>Cansado</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Healthy"><strong>Healthy</strong> <span>Saudável</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Exercise"><strong>Exercise</strong> <span>Exercício</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Rest"><strong>Rest</strong> <span>Descansar</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Heart rate"><strong>Heart rate</strong> <span>Frequência cardíaca</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Pulse"><strong>Pulse</strong> <span>Pulso</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Breathing"><strong>Breathing</strong> <span>Respiração</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. TAKING THE PULSE ACTIVITY -->
+      <div class="sub-module">
+        <h3>💓 5. Taking the Pulse Activity — Medindo o Pulso</h3>
+        <p class="module-desc">O <strong>pulso (pulse)</strong> permite perceber os batimentos do coração.</p>
+
+        <div class="pulse-lab-grid">
+          <div class="pulse-instructions-card">
+            <h4>🩺 Como medir o seu pulso:</h4>
+            <ul class="step-list">
+              <li>✌️ Coloque os dedos <strong>indicador e médio</strong> no pulso, <strong>sem usar o polegar</strong>.</li>
+              <li>⏱️ Conte os batimentos durante <strong>60 segundos</strong> ou conte por <strong>15 segundos e multiplique por 4</strong>.</li>
+              <li>📊 Faça a medição <strong>antes do exercício</strong> e <strong>depois da atividade</strong>.</li>
+              <li>🔍 Compare os resultados!</li>
+            </ul>
+
+            <div class="pulse-comparison-examples">
+              <button type="button" class="pulse-example-box rest-mode" data-speak="Before exercise: 80 beats per minute.">
+                <span class="pulse-tag">🧘 Before exercise (Antes)</span>
+                <strong>80 beats per minute (bpm)</strong>
+                <span>80 batimentos por minuto</span>
+              </button>
+              <button type="button" class="pulse-example-box active-mode" data-speak="After exercise: 120 beats per minute.">
+                <span class="pulse-tag">🏃 After exercise (Depois)</span>
+                <strong>120 beats per minute (bpm)</strong>
+                <span>120 batimentos por minuto</span>
+              </button>
+            </div>
+
+            <p class="pulse-note">
+              💡 A <strong>frequência cardíaca (heart rate)</strong> geralmente <strong>aumenta</strong> durante o exercício porque os músculos precisam de mais oxigênio. Ela varia de pessoa para pessoa e conforme a intensidade da atividade.
+            </p>
+          </div>
+
+          <!-- Interactive Pulse Timer & Calculator -->
+          <div class="pulse-interactive-widget">
+            <h4>⏱️ Laboratório do Pulso (15s × 4)</h4>
+            <p>Simule ou meça seu pulso agora! Escolha o estado ou use o cronômetro de 15 segundos:</p>
+
+            <div class="heart-beat-display">
+              <div class="beating-heart" id="beating-heart">❤️</div>
+              <div class="bpm-readout">
+                <span id="current-bpm">80</span> <small>BPM</small>
+                <div id="bpm-state-label">Em repouso (Before exercise)</div>
+              </div>
+            </div>
+
+            <div class="pulse-mode-buttons">
+              <button type="button" class="btn-pulse-mode active" data-bpm="80" data-label="Before exercise: 80 beats per minute">🧘 Before Exercise (80 bpm)</button>
+              <button type="button" class="btn-pulse-mode" data-bpm="120" data-label="After exercise: 120 beats per minute">🏃 After Exercise (120 bpm)</button>
+            </div>
+
+            <div class="pulse-calc-box">
+              <label for="beats-15s">Quantos batimentos você contou em 15 segundos?</label>
+              <div class="calc-row">
+                <input type="number" id="beats-15s" min="10" max="60" value="20" />
+                <span>× 4 =</span>
+                <strong id="calc-bpm-result">80 beats per minute!</strong>
+              </div>
+              <button type="button" id="start-15s-timer" class="btn-timer">⏱️ Iniciar Cronômetro de 15 Segundos</button>
+              <span id="timer-display" class="timer-status" aria-live="polite">Pronto para contar!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. TRADITIONAL SPORT/GAME FACT SHEET -->
+      <div class="sub-module">
+        <h3>🤸‍♂️ 6. Traditional Sport/Game Fact Sheet — Ficha sobre Esporte ou Jogo Tradicional</h3>
+        <p class="module-desc">
+          Uma <strong>fact sheet</strong> é uma ficha com informações importantes sobre determinado assunto. Ao pesquisar, compare informações de fontes confiáveis e identifique os dados mais importantes!
+        </p>
+
+        <div class="factsheet-showcase">
+          <div class="factsheet-card">
+            <div class="factsheet-header">
+              <span class="fs-icon">🇧🇷🪘</span>
+              <div>
+                <h4>Fact Sheet Model: Capoeira</h4>
+                <span>Esporte / Jogo Tradicional</span>
+              </div>
+            </div>
+            <div class="factsheet-rows">
+              <div class="fs-row">
+                <span class="fs-key">Name — Nome</span>
+                <strong class="fs-val">Capoeira</strong>
+              </div>
+              <div class="fs-row">
+                <span class="fs-key">Country — País</span>
+                <strong class="fs-val">Brazil</strong>
+              </div>
+              <div class="fs-row">
+                <span class="fs-key">Equipment — Equipamento</span>
+                <strong class="fs-val">Comfortable clothes</strong>
+              </div>
+              <div class="fs-row">
+                <span class="fs-key">Number of players — Número de jogadores</span>
+                <strong class="fs-val">Depends on the game</strong>
+              </div>
+              <div class="fs-row">
+                <span class="fs-key">Rules — Regras</span>
+                <strong class="fs-val">Rules of the game</strong>
+              </div>
+              <div class="fs-row">
+                <span class="fs-key">Benefits — Benefícios</span>
+                <strong class="fs-val">Fitness, coordination and teamwork</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="factsheet-reading-box">
+            <h4>🗣️ Exemplo em Inglês (Clique para ouvir a leitura!)</h4>
+            <button type="button" class="reading-passage-btn" data-speak="Capoeira is a traditional Brazilian activity. It combines movement, music and rhythm. It helps develop coordination and fitness.">
+              <p class="en-passage">
+                🔊 “<strong>Capoeira is a traditional Brazilian activity. It combines movement, music and rhythm. It helps develop coordination and fitness.</strong>”
+              </p>
+              <p class="pt-passage">
+                <strong>Tradução:</strong> A capoeira é uma atividade tradicional brasileira. Ela combina movimento, música e ritmo. Ajuda a desenvolver a coordenação e o condicionamento físico.
+              </p>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         MUNDO 3: LANGUAGE ARTS — UNIT 6: IN ISTANBUL
+         ================================================================= -->
+    <section id="mundo-3" class="study-section theme-amber">
+      <div class="section-header">
+        <span class="part-tag">Parte 2 — Language Arts: Unit 6</span>
+        <h2>🕌 Unit 6 — In Istanbul</h2>
+        <p class="section-intro">
+          Vamos passear por Istambul! Aprenda a dar conselhos (<strong>Should / Shouldn't</strong>), fazer pedidos educados (<strong>Could I / Could you / Do you mind if I</strong>), falar de materiais e finalidades (<strong>Be made of / Be used for</strong>), posse (<strong>'s</strong>) e localização no mapa!
+        </p>
+      </div>
+
+      <div class="illustration-showcase">
+        <img src="assets/istanbul-city.png" alt="Ilustração infantil de Istambul com museu, banco, parque e crianças conversando educadamente" class="section-illustration" />
+        <div class="showcase-caption">
+          <h4>🗺️ Explorando Istambul com Educação!</h4>
+          <p>Nos museus, parques e ruas de Istambul, usamos expressões super educadas e observamos a posição de cada lugar no mapa!</p>
+        </div>
+      </div>
+
+      <!-- 7. SHOULD & SHOULDN'T -->
+      <div class="sub-module">
+        <h3>💡 7. Should e Shouldn't — Conselhos</h3>
+        <p class="module-desc">
+          Usamos <strong>should</strong> para dar conselhos e <strong>shouldn't</strong> para recomendar que alguém não faça alguma coisa.
+        </p>
+
+        <div class="grammar-formula-bar">
+          <div class="formula-pill positive">✅ Pessoa + <strong>should</strong> + verbo</div>
+          <div class="formula-pill negative">❌ Pessoa + <strong>shouldn't</strong> + verbo</div>
+        </div>
+
+        <div class="examples-2col">
+          <button type="button" class="sentence-card" data-speak="You should drink water.">
+            <span class="en-line">🔊 <strong>You should drink water.</strong></span>
+            <span class="pt-line">Você deveria beber água.</span>
+          </button>
+          <button type="button" class="sentence-card" data-speak="You should study English.">
+            <span class="en-line">🔊 <strong>You should study English.</strong></span>
+            <span class="pt-line">Você deveria estudar inglês.</span>
+          </button>
+          <button type="button" class="sentence-card" data-speak="You shouldn't eat too much candy.">
+            <span class="en-line">🔊 <strong>You shouldn't eat too much candy.</strong></span>
+            <span class="pt-line">Você não deveria comer doces em excesso.</span>
+          </button>
+          <button type="button" class="sentence-card" data-speak="You shouldn't run in the museum.">
+            <span class="en-line">🔊 <strong>You shouldn't run in the museum.</strong></span>
+            <span class="pt-line">Você não deveria correr no museu.</span>
+          </button>
+        </div>
+
+        <div class="callout-box callout-warning">
+          <span class="callout-icon">⚠️</span>
+          <div>
+            <strong>Atenção:</strong> depois de <strong>should</strong> e <strong>shouldn't</strong>, usamos o verbo <strong>sem to</strong>!<br />
+            <span class="correct-tag">✅ Correto: You should rest.</span>
+            <span class="wrong-tag">❌ Incorreto: You should to rest.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. COULD I...? / COULD YOU...? & 9. DO YOU MIND IF I...? -->
+      <div class="sub-module">
+        <h3>🙋 8. Could I...? / Could you...? &amp; 9. Do you mind if I...?</h3>
+        <p class="module-desc">Usamos essas expressões para fazer pedidos e pedir permissão de maneira educada!</p>
+
+        <div class="polite-cards-grid">
+          <!-- Could I -->
+          <div class="polite-box">
+            <span class="polite-badge">Permissão (Eu faço)</span>
+            <h4>Could I...? — Posso eu...? / Eu poderia...?</h4>
+            <p>Usamos para pedir permissão para fazer algo.</p>
+            <button type="button" class="sentence-card" data-speak="Could I open the window?">
+              <span class="en-line">🔊 <strong>Could I open the window?</strong></span>
+              <span class="pt-line">Posso abrir a janela?</span>
+            </button>
+            <button type="button" class="sentence-card" data-speak="Could I use your pencil?">
+              <span class="en-line">🔊 <strong>Could I use your pencil?</strong></span>
+              <span class="pt-line">Posso usar seu lápis?</span>
+            </button>
+          </div>
+
+          <!-- Could you -->
+          <div class="polite-box">
+            <span class="polite-badge badge-blue">Pedido (Você faz)</span>
+            <h4>Could you...? — Você poderia...?</h4>
+            <p>Usamos para pedir que <strong>outra pessoa</strong> faça algo.</p>
+            <button type="button" class="sentence-card" data-speak="Could you help me, please?">
+              <span class="en-line">🔊 <strong>Could you help me, please?</strong></span>
+              <span class="pt-line">Você poderia me ajudar, por favor?</span>
+            </button>
+            <button type="button" class="sentence-card" data-speak="Could you close the door?">
+              <span class="en-line">🔊 <strong>Could you close the door?</strong></span>
+              <span class="pt-line">Você poderia fechar a porta?</span>
+            </button>
+          </div>
+
+          <!-- Do you mind if I -->
+          <div class="polite-box highlight-mind">
+            <span class="polite-badge badge-purple">Pegadinha da Prova! 🎯</span>
+            <h4>9. Do you mind if I...? — Você se importa se eu...?</h4>
+            <p>Significa “Você se importa se eu...?” ou “Você se incomoda se eu...?”.</p>
+            <button type="button" class="sentence-card" data-speak="Do you mind if I sit here?">
+              <span class="en-line">🔊 <strong>Do you mind if I sit here?</strong></span>
+              <span class="pt-line">Você se importa se eu sentar aqui?</span>
+            </button>
+            <button type="button" class="sentence-card" data-speak="Do you mind if I take a photo?">
+              <span class="en-line">🔊 <strong>Do you mind if I take a photo?</strong></span>
+              <span class="pt-line">Você se importa se eu tirar uma foto?</span>
+            </button>
+            <div class="mind-answers">
+              <div class="mind-ans allow" data-speak="No, not at all.">
+                <strong>✅ No, not at all.</strong> — Não, de jeito nenhum. <em>(Pode fazer! Permissão concedida!)</em>
+              </div>
+              <div class="mind-ans deny" data-speak="Yes, I do.">
+                <strong>🚫 Yes, I do.</strong> — Sim, me importo. <em>(Não pode fazer!)</em>
+              </div>
+            </div>
+            <p class="mind-warning">
+              ⚠️ <strong>Cuidado:</strong> em <em>Do you mind...?</em>, responder <strong>No</strong> geralmente significa que você <strong>não se importa</strong> e <strong>permite a ação</strong>!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. BE MADE OF & BE USED FOR -->
+      <div class="sub-module">
+        <h3>🪵✂️ 10. Be made of e Be used for — Material e Finalidade</h3>
+        <div class="tip-banner">
+          💡 <strong>Dica de Ouro para Memorizar:</strong>
+          <span class="tip-pill"><strong>Made of</strong> = Material (do que é feito)</span>
+          <span class="tip-pill"><strong>Used for</strong> = Finalidade (+ verbo com <em>-ing</em>)</span>
+        </div>
+
+        <div class="made-used-grid">
+          <div class="grammar-col-card">
+            <h4>🧱 Be made of (“ser feito de” — Material)</h4>
+            <button type="button" class="sentence-card" data-speak="The table is made of wood.">
+              <span class="en-line">🔊 <strong>The table is made of wood.</strong></span>
+              <span class="pt-line">A mesa é feita de madeira. 🪵</span>
+            </button>
+            <button type="button" class="sentence-card" data-speak="The ring is made of gold.">
+              <span class="en-line">🔊 <strong>The ring is made of gold.</strong></span>
+              <span class="pt-line">O anel é feito de ouro. 💍</span>
+            </button>
+            <button type="button" class="sentence-card" data-speak="The bottle is made of glass.">
+              <span class="en-line">🔊 <strong>The bottle is made of glass.</strong></span>
+              <span class="pt-line">A garrafa é feita de vidro. 🍾</span>
+            </button>
+          </div>
+
+          <div class="grammar-col-card">
+            <h4>🛠️ Be used for (“ser usado para” — Finalidade)</h4>
+            <button type="button" class="sentence-card" data-speak="A pencil is used for writing.">
+              <span class="en-line">🔊 <strong>A pencil is used for writing.</strong></span>
+              <span class="pt-line">Um lápis é usado para escrever. ✏️</span>
+            </button>
+            <button type="button" class="sentence-card" data-speak="Scissors are used for cutting.">
+              <span class="en-line">🔊 <strong>Scissors are used for cutting.</strong></span>
+              <span class="pt-line">Tesouras são usadas para cortar. ✂️</span>
+            </button>
+            <button type="button" class="sentence-card" data-speak="A ruler is used for measuring.">
+              <span class="en-line">🔊 <strong>A ruler is used for measuring.</strong></span>
+              <span class="pt-line">Uma régua é usada para medir. 📏</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. POSSESSIVE 'S & 12. PREPOSITIONS OF PLACE -->
+      <div class="sub-module">
+        <div class="possessive-prepositions-grid">
+          <!-- 11. Possessive 's -->
+          <div class="grammar-col-card">
+            <h3>🎒 11. Possessive 's — Posse</h3>
+            <p>Usamos <strong>'s</strong> para indicar que algo pertence a alguém. Em geral, o <strong>nome do dono vem antes de 's</strong>, seguido do objeto que pertence a ele!</p>
+
+            <div class="possessive-chips">
+              <button type="button" class="vocab-chip" data-speak="Peter's book">📘 <strong>Peter's book</strong> — O livro do Peter</button>
+              <button type="button" class="vocab-chip" data-speak="Mary's bag">👜 <strong>Mary's bag</strong> — A bolsa da Mary</button>
+              <button type="button" class="vocab-chip" data-speak="The teacher's desk">🪑 <strong>The teacher's desk</strong> — A mesa do professor</button>
+            </div>
+
+            <h4>Compare:</h4>
+            <button type="button" class="sentence-card" data-speak="Tom's bike is blue.">
+              <span class="en-line">🔊 <strong>Tom's bike is blue.</strong></span>
+              <span class="pt-line">A bicicleta do Tom é azul. 🚲</span>
+            </button>
+            <button type="button" class="sentence-card" data-speak="Anna's dog is small.">
+              <span class="en-line">🔊 <strong>Anna's dog is small.</strong></span>
+              <span class="pt-line">O cachorro da Anna é pequeno. 🐶</span>
+            </button>
+          </div>
+
+          <!-- 12. Prepositions of Place -->
+          <div class="grammar-col-card">
+            <h3>🧭 12. Prepositions of Place — Preposições de Lugar</h3>
+            <p>Indicam onde uma pessoa ou objeto está. Observe sempre a posição dos lugares no desenho do mapa!</p>
+
+            <div class="prep-badges-row">
+              <button type="button" class="prep-pill" data-speak="In front of">⬆️ <strong>In front of</strong> <span>Na frente de</span></button>
+              <button type="button" class="prep-pill" data-speak="Behind">⬇️ <strong>Behind</strong> <span>Atrás de</span></button>
+              <button type="button" class="prep-pill" data-speak="To the left of">⬅️ <strong>To the left of</strong> <span>À esquerda de</span></button>
+              <button type="button" class="prep-pill" data-speak="To the right of">➡️ <strong>To the right of</strong> <span>À direita de</span></button>
+            </div>
+
+            <!-- Interactive Mini Town Map -->
+            <div class="istanbul-mini-map" aria-label="Mapa interativo da cidade">
+              <div class="map-row">
+                <div class="map-building" data-place="park">🌳 <strong>Park</strong><small>(Behind the school)</small></div>
+              </div>
+              <div class="map-row">
+                <div class="map-building" data-place="library">📚 <strong>Library</strong><small>(To the left of the bank)</small></div>
+                <div class="map-building highlight-bldg" data-place="bank">🏦 <strong>Bank</strong><small>(In front of the museum)</small></div>
+                <div class="map-building highlight-bldg" data-place="school">🏫 <strong>School</strong><small>(Centro)</small></div>
+                <div class="map-building" data-place="cinema">🍿 <strong>Cinema</strong><small>(To the right of the school)</small></div>
+              </div>
+              <div class="map-row">
+                <div class="map-building" data-place="museum">🏛️ <strong>Museum</strong><small>(Atrás do banco)</small></div>
+              </div>
+            </div>
+
+            <div class="examples-list-compact">
+              <button type="button" class="sentence-card" data-speak="The bank is in front of the museum.">
+                <span class="en-line">🔊 <strong>The bank is in front of the museum.</strong></span>
+                <span class="pt-line">O banco fica na frente do museu.</span>
+              </button>
+              <button type="button" class="sentence-card" data-speak="The park is behind the school.">
+                <span class="en-line">🔊 <strong>The park is behind the school.</strong></span>
+                <span class="pt-line">O parque fica atrás da escola.</span>
+              </button>
+              <button type="button" class="sentence-card" data-speak="The library is to the left of the bank.">
+                <span class="en-line">🔊 <strong>The library is to the left of the bank.</strong></span>
+                <span class="pt-line">A biblioteca fica à esquerda do banco.</span>
+              </button>
+              <button type="button" class="sentence-card" data-speak="The cinema is to the right of the school.">
+                <span class="en-line">🔊 <strong>The cinema is to the right of the school.</strong></span>
+                <span class="pt-line">O cinema fica à direita da escola.</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         MUNDO 4: LANGUAGE ARTS — UNIT 7: THE STORY TELLER
+         ================================================================= -->
+    <section id="mundo-4" class="study-section theme-purple">
+      <div class="section-header">
+        <span class="part-tag">Parte 2 — Language Arts: Unit 7</span>
+        <h2>🎭 Unit 7 — The Story Teller</h2>
+        <p class="section-intro">
+          Suba ao palco! Aprenda a oferecer ajuda e falar do futuro com <strong>Will</strong>, contar coisas que acabaram de acontecer com <strong>Present Perfect + Just</strong> e dominar o vocabulário de teatro, viagens e profissões!
+        </p>
+      </div>
+
+      <div class="illustration-showcase">
+        <img src="assets/storyteller-future.png" alt="Palco mágico com contador de histórias e Museu do Futuro com cientista e robô amigável" class="section-illustration" />
+        <div class="showcase-caption">
+          <h4>🎬 Do Palco de Histórias ao Museu do Futuro!</h4>
+          <p>Nas Units 7 e 8, aprendemos a conectar ações que acabaram de acontecer (<em>Have/Has + just</em>) com ofertas e possibilidades futuras (<em>Will</em> e <em>First Conditional</em>)!</p>
+        </div>
+      </div>
+
+      <!-- 13. WILL — OFERTAS E INTENÇÕES -->
+      <div class="sub-module">
+        <h3>🤝 13. Will — Ofertas e Intenções Futuras</h3>
+        <p class="module-desc">Usamos <strong>will + verbo</strong> para expressar ofertas, decisões e intenções futuras.</p>
+
+        <div class="grammar-formula-bar">
+          <div class="formula-pill positive">➕ Afirmativa: Sujeito + <strong>will</strong> + verbo</div>
+          <div class="formula-pill negative">➖ Negativa: Sujeito + <strong>won't</strong> + verbo</div>
+          <div class="formula-pill question">❓ Pergunta: <strong>Will</strong> + sujeito + verbo?</div>
+        </div>
+
+        <div class="made-used-grid">
+          <div class="grammar-col-card">
+            <h4>🎁 Exemplos de Ofertas (Offers)</h4>
+            <button type="button" class="sentence-card" data-speak="I'll help you.">
+              <span class="en-line">🔊 <strong>I'll help you.</strong></span>
+              <span class="pt-line">Eu vou ajudar você.</span>
+            </button>
+            <button type="button" class="sentence-card" data-speak="I'll carry your bag.">
+              <span class="en-line">🔊 <strong>I'll carry your bag.</strong></span>
+              <span class="pt-line">Eu vou carregar sua bolsa.</span>
+            </button>
+            <button type="button" class="sentence-card" data-speak="I'll open the door for you.">
+              <span class="en-line">🔊 <strong>I'll open the door for you.</strong></span>
+              <span class="pt-line">Eu vou abrir a porta para você.</span>
+            </button>
+          </div>
+
+          <div class="grammar-col-card">
+            <h4>🎯 Exemplos de Intenções ou Decisões</h4>
+            <button type="button" class="sentence-card" data-speak="I will study tonight.">
+              <span class="en-line">🔊 <strong>I will study tonight.</strong></span>
+              <span class="pt-line">Eu estudarei hoje à noite.</span>
+            </button>
+            <button type="button" class="sentence-card" data-speak="I will visit my grandmother.">
+              <span class="en-line">🔊 <strong>I will visit my grandmother.</strong></span>
+              <span class="pt-line">Visitarei minha avó.</span>
+            </button>
+            <button type="button" class="sentence-card" data-speak="I won't be late.">
+              <span class="en-line">🔊 <strong>I won't be late.</strong></span>
+              <span class="pt-line">Não vou me atrasar.</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="contractions-row">
+          <span class="contraction-chip"><strong>I will</strong> = I'll</span>
+          <span class="contraction-chip"><strong>We will</strong> = We'll</span>
+          <span class="contraction-chip"><strong>He will</strong> = He'll</span>
+          <span class="contraction-chip highlight-wont"><strong>Will not</strong> = won't</span>
+        </div>
+
+        <div class="callout-box callout-warning">
+          <span class="callout-icon">⚠️</span>
+          <div>
+            <strong>Atenção:</strong> depois de <strong>will</strong> e <strong>won't</strong>, o verbo fica na <strong>forma básica</strong> (sem -s)!<br />
+            <span class="correct-tag">✅ Correto: She will help.</span>
+            <span class="wrong-tag">❌ Incorreto: She will helps.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 14. PRESENT PERFECT + JUST -->
+      <div class="sub-module">
+        <h3>⏱️ 14. Present Perfect + Just — Ações que Acabaram de Acontecer</h3>
+        <p class="module-desc">
+          Usamos <strong>just</strong> com o <strong>Present Perfect</strong> para falar de algo que aconteceu <strong>há pouquíssimo tempo</strong> (“acabou de...”).
+        </p>
+
+        <div class="grammar-formula-bar">
+          <div class="formula-pill positive">✨ Estrutura: Sujeito + <strong>have / has</strong> + <strong>just</strong> + <strong>particípio do verbo</strong></div>
+        </div>
+
+        <div class="aux-comparison-grid">
+          <div class="aux-card">
+            <span class="aux-pronouns">I / You / We / They</span>
+            <strong class="aux-verb">have</strong>
+            <button type="button" class="sentence-card" data-speak="I have just finished.">
+              <span class="en-line">🔊 <strong>I have just finished.</strong></span>
+              <span class="pt-line">Eu acabei de terminar.</span>
+            </button>
+          </div>
+          <div class="aux-card">
+            <span class="aux-pronouns">He / She / It</span>
+            <strong class="aux-verb">has</strong>
+            <button type="button" class="sentence-card" data-speak="She has just arrived.">
+              <span class="en-line">🔊 <strong>She has just arrived.</strong></span>
+              <span class="pt-line">Ela acabou de chegar.</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="examples-2col">
+          <button type="button" class="sentence-card" data-speak="I have just eaten lunch.">
+            <span class="en-line">🔊 <strong>I have just eaten lunch.</strong></span>
+            <span class="pt-line">Acabei de almoçar.</span>
+          </button>
+          <button type="button" class="sentence-card" data-speak="He has just arrived.">
+            <span class="en-line">🔊 <strong>He has just arrived.</strong></span>
+            <span class="pt-line">Ele acabou de chegar.</span>
+          </button>
+          <button type="button" class="sentence-card" data-speak="They have just finished the game.">
+            <span class="en-line">🔊 <strong>They have just finished the game.</strong></span>
+            <span class="pt-line">Eles acabaram de terminar o jogo.</span>
+          </button>
+          <button type="button" class="sentence-card" data-speak="We have just seen the show.">
+            <span class="en-line">🔊 <strong>We have just seen the show.</strong></span>
+            <span class="pt-line">Acabamos de assistir ao espetáculo.</span>
+          </button>
+        </div>
+
+        <div class="contractions-row">
+          <span class="contraction-chip"><strong>I have</strong> = I've</span>
+          <span class="contraction-chip"><strong>You have</strong> = You've</span>
+          <span class="contraction-chip"><strong>He has</strong> = He's</span>
+          <span class="contraction-chip"><strong>She has</strong> = She's</span>
+        </div>
+
+        <div class="callout-box callout-remember">
+          <span class="callout-icon">🔍</span>
+          <div>
+            <strong>Lembre-se:</strong> <code>He's</code> pode significar <em>he is</em> ou <em>he has</em>. Observe o restante da frase (como <code>just + particípio</code>) para descobrir qual é o significado!
+          </div>
+        </div>
+
+        <!-- Interactive Verb Participle Flip Cards -->
+        <h4>🔄 Máquina de Verbos: Forma Básica → Particípio (Clique para virar e ouvir 🔊)</h4>
+        <div class="verbs-flip-grid">
+          <button type="button" class="verb-flip-card" data-speak="Go. Gone.">
+            <span class="verb-base">Go</span>
+            <span class="verb-arrow">➡️</span>
+            <strong class="verb-part">Gone</strong>
+            <small>Ir → Ido</small>
+          </button>
+          <button type="button" class="verb-flip-card" data-speak="Eat. Eaten.">
+            <span class="verb-base">Eat</span>
+            <span class="verb-arrow">➡️</span>
+            <strong class="verb-part">Eaten</strong>
+            <small>Comer → Comido</small>
+          </button>
+          <button type="button" class="verb-flip-card" data-speak="See. Seen.">
+            <span class="verb-base">See</span>
+            <span class="verb-arrow">➡️</span>
+            <strong class="verb-part">Seen</strong>
+            <small>Ver → Visto</small>
+          </button>
+          <button type="button" class="verb-flip-card" data-speak="Do. Done.">
+            <span class="verb-base">Do</span>
+            <span class="verb-arrow">➡️</span>
+            <strong class="verb-part">Done</strong>
+            <small>Fazer → Feito</small>
+          </button>
+          <button type="button" class="verb-flip-card" data-speak="Write. Written.">
+            <span class="verb-base">Write</span>
+            <span class="verb-arrow">➡️</span>
+            <strong class="verb-part">Written</strong>
+            <small>Escrever → Escrito</small>
+          </button>
+          <button type="button" class="verb-flip-card" data-speak="Finish. Finished.">
+            <span class="verb-base">Finish</span>
+            <span class="verb-arrow">➡️</span>
+            <strong class="verb-part">Finished</strong>
+            <small>Terminar → Terminado</small>
+          </button>
+          <button type="button" class="verb-flip-card" data-speak="Play. Played.">
+            <span class="verb-base">Play</span>
+            <span class="verb-arrow">➡️</span>
+            <strong class="verb-part">Played</strong>
+            <small>Jogar/Brincar → Jogado</small>
+          </button>
+          <button type="button" class="verb-flip-card" data-speak="Arrive. Arrived.">
+            <span class="verb-base">Arrive</span>
+            <span class="verb-arrow">➡️</span>
+            <strong class="verb-part">Arrived</strong>
+            <small>Chegar → Chegado</small>
+          </button>
+        </div>
+
+        <div class="compare-tenses-box">
+          <h4>⚖️ Exemplo de Diferença: Present Perfect vs. Simple Present</h4>
+          <div class="examples-2col">
+            <button type="button" class="sentence-card" data-speak="She has just eaten.">
+              <span class="tense-tag">Present Perfect (Acabou de acontecer)</span>
+              <span class="en-line">🔊 <strong>She has just eaten.</strong></span>
+              <span class="pt-line">Ela acabou de comer.</span>
+            </button>
+            <button type="button" class="sentence-card" data-speak="She eats every day.">
+              <span class="tense-tag">Simple Present (Rotina / Hábito)</span>
+              <span class="en-line">🔊 <strong>She eats every day.</strong></span>
+              <span class="pt-line">Ela come todos os dias.</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 15. VOCABULÁRIO DE TEATRO, HISTÓRIAS, VIAGENS E PROFISSÕES -->
+      <div class="sub-module">
+        <h3>🌍 15. Vocabulário: Teatro, Viagens e Profissões</h3>
+
+        <div class="vocab-3themes-grid">
+          <!-- Theatre and stories -->
+          <div class="theme-vocab-panel">
+            <h4>🎭 Teatro e Histórias — Theatre and stories</h4>
+            <div class="vocab-table-cards">
+              <button type="button" class="mini-vocab-btn" data-speak="Actor"><strong>Actor</strong> <span>Ator</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Actress"><strong>Actress</strong> <span>Atriz</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Stage"><strong>Stage</strong> <span>Palco</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Audience"><strong>Audience</strong> <span>Plateia</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Costume"><strong>Costume</strong> <span>Figurino</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Storyteller"><strong>Storyteller</strong> <span>Contador de histórias</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Play"><strong>Play</strong> <span>Peça de teatro</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Performance"><strong>Performance</strong> <span>Apresentação</span></button>
+            </div>
+            <button type="button" class="sentence-card" data-speak="The actor is on the stage.">
+              <span class="en-line">🔊 <strong>The actor is on the stage.</strong></span>
+              <span class="pt-line">O ator está no palco.</span>
+            </button>
+          </div>
+
+          <!-- Travel and cultures -->
+          <div class="theme-vocab-panel">
+            <h4>✈️ Viagens e Culturas — Travel and cultures</h4>
+            <div class="vocab-table-cards">
+              <button type="button" class="mini-vocab-btn" data-speak="Country"><strong>Country</strong> <span>País</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Culture"><strong>Culture</strong> <span>Cultura</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Museum"><strong>Museum</strong> <span>Museu</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Travel"><strong>Travel</strong> <span>Viajar</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Airport"><strong>Airport</strong> <span>Aeroporto</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Suitcase"><strong>Suitcase</strong> <span>Mala</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Tourist"><strong>Tourist</strong> <span>Turista</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Tradition"><strong>Tradition</strong> <span>Tradição</span></button>
+            </div>
+            <button type="button" class="sentence-card" data-speak="Tourists visit museums to learn about different cultures.">
+              <span class="en-line">🔊 <strong>Tourists visit museums to learn about different cultures.</strong></span>
+              <span class="pt-line">Os turistas visitam museus para aprender sobre diferentes culturas.</span>
+            </button>
+          </div>
+
+          <!-- Jobs -->
+          <div class="theme-vocab-panel">
+            <h4>👩‍🔬 Profissões — Jobs</h4>
+            <div class="vocab-table-cards">
+              <button type="button" class="mini-vocab-btn" data-speak="Doctor"><strong>Doctor</strong> <span>Médico</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Teacher"><strong>Teacher</strong> <span>Professor</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Scientist"><strong>Scientist</strong> <span>Cientista</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Artist"><strong>Artist</strong> <span>Artista</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Engineer"><strong>Engineer</strong> <span>Engenheiro</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Chef"><strong>Chef</strong> <span>Chefe de cozinha</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Actor"><strong>Actor</strong> <span>Ator</span></button>
+              <button type="button" class="mini-vocab-btn" data-speak="Pilot"><strong>Pilot</strong> <span>Piloto</span></button>
+            </div>
+            <button type="button" class="sentence-card" data-speak="A scientist studies the human body.">
+              <span class="en-line">🔊 <strong>A scientist studies the human body.</strong></span>
+              <span class="pt-line">Um cientista estuda o corpo humano.</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         MUNDO 5: LANGUAGE ARTS — UNIT 8: MUSEUM OF THE FUTURE & REVISÃO RÁPIDA
+         ================================================================= -->
+    <section id="mundo-5" class="study-section theme-indigo">
+      <div class="section-header">
+        <span class="part-tag">Parte 2 — Language Arts: Unit 8</span>
+        <h2>🔮 Unit 8 — Museum of the Future</h2>
+        <p class="section-intro">
+          Bem-vindo ao Museu do Futuro! Aqui descobrimos como uma condição hoje cria um resultado possível no futuro usando o <strong>First Conditional</strong>!
+        </p>
+      </div>
+
+      <!-- 16. FIRST CONDITIONAL -->
+      <div class="sub-module">
+        <h3>⚡ 16. First Conditional — Possibilidades Futuras</h3>
+        <p class="module-desc">
+          Usamos o <strong>First Conditional</strong> para falar de uma <strong>condição</strong> e de um <strong>resultado possível no futuro</strong>. Em português, geralmente equivale a <em>“Se acontecer isto, aquilo acontecerá”</em>.
+        </p>
+
+        <div class="grammar-formula-bar">
+          <div class="formula-pill positive">🧩 Condição: <strong>If + Simple Present</strong> ,</div>
+          <div class="formula-pill question">🚀 Resultado: <strong>will + verbo</strong></div>
+        </div>
+
+        <div class="examples-2col">
+          <button type="button" class="sentence-card" data-speak="If it rains, I will stay home.">
+            <span class="en-line">🔊 <strong>If it rains, I will stay home.</strong></span>
+            <span class="pt-line">Se chover, ficarei em casa. 🌧️🏠</span>
+          </button>
+          <button type="button" class="sentence-card" data-speak="If you study, you will learn.">
+            <span class="en-line">🔊 <strong>If you study, you will learn.</strong></span>
+            <span class="pt-line">Se você estudar, aprenderá. 📚🌟</span>
+          </button>
+          <button type="button" class="sentence-card" data-speak="If we exercise, we will feel stronger.">
+            <span class="en-line">🔊 <strong>If we exercise, we will feel stronger.</strong></span>
+            <span class="pt-line">Se fizermos exercícios, nos sentiremos mais fortes. 💪</span>
+          </button>
+          <button type="button" class="sentence-card" data-speak="If you don't drink water, you will get thirsty.">
+            <span class="en-line">🔊 <strong>If you don't drink water, you will get thirsty.</strong></span>
+            <span class="pt-line">Se você não beber água, ficará com sede. 💧</span>
+          </button>
+        </div>
+
+        <div class="conditional-order-box">
+          <h4>🔄 A frase também pode começar pelo resultado!</h4>
+          <p>
+            Quando a frase começa com <strong>if</strong>, normalmente colocamos uma <strong>vírgula (,)</strong> entre as duas partes. Quando começa pelo resultado, não precisa de vírgula:
+          </p>
+          <div class="order-demo">
+            <button type="button" class="btn-swap-order" id="btn-swap-conditional">
+              🔁 Clique para inverter a ordem da frase!
+            </button>
+            <div class="order-sentence" id="conditional-order-display" data-speak="I will stay home if it rains.">
+              <strong>I will stay home</strong> if it rains.
+            </div>
+          </div>
+        </div>
+
+        <div class="callout-box callout-warning">
+          <span class="callout-icon">🚫</span>
+          <div>
+            <strong>Erro comum:</strong> <strong>NÃO</strong> usar <em>will</em> logo depois de <em>if</em> neste tipo de frase!<br />
+            <span class="correct-tag">✅ Correto: If I study, I will pass the test.</span>
+            <span class="wrong-tag">❌ Incorreto: If I will study, I will pass the test.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- REVISÃO RÁPIDA: O QUE NÃO PODE ESQUECER -->
+      <div id="revisao-rapida" class="sub-module quick-review-box">
+        <h3>⚡ Revisão Rápida: O Que Não Pode Esquecer!</h3>
+        <div class="review-grid">
+          <div class="review-item">
+            <span class="rev-icon">💡</span>
+            <div><strong>Should / shouldn't:</strong> dar conselhos (verbo sem <em>to</em>).</div>
+          </div>
+          <div class="review-item">
+            <span class="rev-icon">🙋</span>
+            <div><strong>Could I...? / Do you mind if I...?</strong> pedir permissão (<em>No, not at all</em> = permite!).</div>
+          </div>
+          <div class="review-item">
+            <span class="rev-icon">🤝</span>
+            <div><strong>Could you...?</strong> pedir que alguém faça algo.</div>
+          </div>
+          <div class="review-item">
+            <span class="rev-icon">🪵</span>
+            <div><strong>Be made of:</strong> material. <strong>Be used for:</strong> finalidade (+ verbo <em>-ing</em>).</div>
+          </div>
+          <div class="review-item">
+            <span class="rev-icon">🎒</span>
+            <div><strong>Possessive 's:</strong> indicar posse (dono + <code>'s</code> + objeto: <em>Anna's book</em>).</div>
+          </div>
+          <div class="review-item">
+            <span class="rev-icon">🚀</span>
+            <div><strong>Will:</strong> ofertas, decisões e intenções futuras (verbo na forma básica).</div>
+          </div>
+          <div class="review-item">
+            <span class="rev-icon">⏱️</span>
+            <div><strong>Have/has + just + particípio:</strong> algo que acabou de acontecer.</div>
+          </div>
+          <div class="review-item">
+            <span class="rev-icon">🔮</span>
+            <div><strong>First Conditional:</strong> <code>If + Simple Present, will + verbo</code>.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         PARTE 3 — EXERCÍCIOS DE REVISÃO (SIMULADO DE 15 QUESTÕES)
+         ================================================================= -->
+    <section id="simulado" class="study-section theme-quiz">
+      <div class="section-header">
+        <span class="part-tag">Parte 3 — Exercícios de Revisão</span>
+        <h2>🏆 Simulado Interativo — 15 Questões</h2>
+        <p class="section-intro">
+          Tente responder sem consultar o resumo! São 15 questões variadas de <strong>ICA</strong> e <strong>Language Arts</strong>. Você pode conferir a resposta na hora ou finalizar tudo para ver seu troféu e o gabarito comentado completo!
+        </p>
+      </div>
+
+      <div class="quiz-controls-bar">
+        <div class="quiz-score-live">
+          <span>Respondidas: <strong id="quiz-answered-count">0</strong> / 15</span>
+          <span>Acertos até agora: <strong id="quiz-correct-count">0</strong> 🌟</span>
+        </div>
+        <div class="quiz-action-btns">
+          <button type="button" id="btn-check-all" class="btn-primary">✅ Finalizar e Ver Gabarito Comentado</button>
+          <button type="button" id="btn-reset-quiz" class="btn-secondary">🔄 Reiniciar Simulado</button>
+        </div>
+      </div>
+
+      <div id="quiz-questions-container" class="quiz-list">
+        <!-- Rendered by script.js with all 15 official questions + explanations -->
+      </div>
+
+      <!-- Final Result Banner -->
+      <div id="quiz-final-report" class="quiz-report-card" hidden>
+        <div class="report-trophy" id="report-trophy">🏆</div>
+        <h3 id="report-title">Parabéns, Super Explorador!</h3>
+        <p id="report-summary">Você acertou 15 de 15 questões!</p>
+        <button type="button" id="btn-retry-bottom" class="btn-primary">Jogar Novamente 🔄</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>🌟 <strong>Super Exploradores</strong> — Portal de Aprendizado Lúdico de ICA (Ciências e Saúde) &amp; Language Arts (Units 6, 7 &amp; 8).</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
