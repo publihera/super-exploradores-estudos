@@ -1747,11 +1747,388 @@ progress::-moz-progress-bar {
 }
 
 /* ==========================================================================
+   TELA DO GAME: LABORATÓRIO MONTE O CORPO HUMANO (#game-corpo)
+   ========================================================================== */
+.nav-pill-game {
+  background: #fce7f3;
+  border-color: #ec4899;
+  color: #9d174d;
+}
+
+.btn-game-hero {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 1rem;
+  padding: 0.7rem 1.35rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #ec4899, #8b5cf6);
+  color: #ffffff;
+  border: 2px solid #9d174d;
+  box-shadow: 0 5px 0 #831843;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.btn-game-hero:hover {
+  transform: translateY(-2px);
+}
+
+.theme-game {
+  background: linear-gradient(180deg, #fdf2f8 0%, #f0f9ff 100%);
+  border-color: #f472b6;
+  box-shadow: 0 10px 0 #db2777;
+}
+
+.game-top-bar {
+  background: #ffffff;
+  border: 3px solid #f472b6;
+  border-radius: 1.25rem;
+  padding: 0.9rem 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.game-modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.btn-game-mode {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 600;
+  padding: 0.55rem 1rem;
+  border-radius: 0.9rem;
+  border: 2px solid #cbd5e1;
+  background: #f8fafc;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-game-mode.active {
+  background: #db2777;
+  color: #ffffff;
+  border-color: #9d174d;
+  box-shadow: 0 3px 0 #831843;
+}
+
+.game-scoreboard {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.score-pill {
+  background: #fdf2f8;
+  border: 2px solid #f472b6;
+  color: #9d174d;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--pill-radius);
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.98rem;
+}
+
+.streak-pill {
+  background: #fef3c7;
+  border-color: #f59e0b;
+  color: #92400e;
+}
+
+.btn-reset-game {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 0.92rem;
+  background: #ffffff;
+  border: 2px solid #94a3b8;
+  border-radius: 0.85rem;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 3px 0 #64748b;
+}
+
+.game-mission-banner {
+  background: #fffbeb;
+  border: 3px solid #f59e0b;
+  border-radius: 1.25rem;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 0 #d97706;
+}
+
+.mission-icon {
+  font-size: 2.2rem;
+  flex-shrink: 0;
+}
+
+.mission-text-wrap {
+  flex: 1;
+}
+
+.mission-text-wrap strong {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
+  color: #92400e;
+  display: block;
+}
+
+.mission-text-wrap p {
+  margin: 0.15rem 0 0;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.body-game-arena {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.parts-tray-panel {
+  background: #ffffff;
+  border: 3px solid #cbd5e1;
+  border-radius: 1.5rem;
+  padding: 1.2rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.tray-header {
+  margin-bottom: 1rem;
+  border-bottom: 2px dashed #e2e8f0;
+  padding-bottom: 0.6rem;
+}
+
+.tray-header h3 {
+  margin-bottom: 0.2rem;
+  font-size: 1.25rem;
+}
+
+.tray-header small {
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.parts-tray-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.7rem;
+}
+
+.game-piece-card {
+  background: #f8fafc;
+  border: 3px solid #94a3b8;
+  border-radius: 1rem;
+  padding: 0.55rem 0.65rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 0 #64748b;
+  transition: transform 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+  position: relative;
+}
+
+.game-piece-card:hover {
+  border-color: #0284c7;
+  background: #f0f9ff;
+}
+
+.game-piece-card.selected-piece {
+  background: #fef3c7;
+  border-color: #f59e0b;
+  box-shadow: 0 4px 0 #d97706, 0 0 0 3px #fde68a;
+  transform: scale(1.04);
+}
+
+.game-piece-card.placed-piece {
+  opacity: 0.38;
+  pointer-events: none;
+  filter: grayscale(0.6);
+  box-shadow: none;
+}
+
+/* Modern Web Guidance (`drag`): Dedicated handle with touch-action and -webkit-user-select */
+.drag-handle {
+  cursor: grab;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  background: #e2e8f0;
+  color: #334155;
+  border-radius: 0.65rem;
+  width: 2.2rem;
+  height: 2.4rem;
+  display: grid;
+  place-items: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+  border: 2px solid #cbd5e1;
+}
+
+.drag-handle.dragging {
+  cursor: grabbing;
+  background: #bae6fd;
+  border-color: #0284c7;
+}
+
+.piece-select-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  text-align: start;
+  cursor: pointer;
+  font-family: inherit;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.piece-select-btn strong {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.piece-select-btn span {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #0369a1;
+}
+
+/* Floating Ghost Element During Pointer Drag */
+.floating-drag-avatar {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  background: #fef3c7;
+  border: 3px solid #f59e0b;
+  border-radius: 1rem;
+  padding: 0.5rem 0.9rem;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #92400e;
+  box-shadow: 0 12px 25px rgb(0 0 0 / 0.22);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Coluna 2: Tabuleiro do Corpo */
+.body-board-panel {
+  background: #ffffff;
+  border: 3px solid #93c5fd;
+  border-radius: 1.5rem;
+  padding: 1rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.body-board-canvas {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  aspect-ratio: 500 / 650;
+  margin: 0 auto;
+  background: radial-gradient(circle at center, #f0f9ff 0%, #e0f2fe 100%);
+  border-radius: 1.25rem;
+  border: 3px dashed #38bdf8;
+  overflow: hidden;
+}
+
+.board-silhouette-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.body-drop-slot {
+  position: absolute;
+  left: var(--slot-x);
+  top: var(--slot-y);
+  transform: translate(-50%, -50%);
+  background: rgb(255 255 255 / 0.94);
+  border: 3px dashed #0284c7;
+  border-radius: 0.95rem;
+  padding: 0.35rem 0.65rem;
+  min-width: 118px;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem;
+  box-shadow: 0 4px 10px rgb(2 132 199 / 0.15);
+  transition: transform 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.body-drop-slot:hover,
+.body-drop-slot.drop-hover {
+  transform: translate(-50%, -50%) scale(1.08);
+  background: #fef9c3;
+  border-color: #eab308;
+  border-style: solid;
+  z-index: 10;
+}
+
+.slot-placeholder {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0284c7;
+}
+
+.slot-hint-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #475569;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.body-drop-slot.slot-filled {
+  background: #dcfce7;
+  border: 3px solid #16a34a;
+  box-shadow: 0 4px 0 #15803d;
+  animation: popInSlot 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.body-drop-slot.slot-wrong {
+  background: #fee2e2;
+  border: 3px solid #ef4444;
+  animation: shakeSlot 0.4s ease;
+}
+
+@keyframes popInSlot {
+  0% { transform: translate(-50%, -50%) scale(0.7); }
+  70% { transform: translate(-50%, -50%) scale(1.12); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes shakeSlot {
+  0%, 100% { transform: translate(-50%, -50%); }
+  25% { transform: translate(calc(-50% - 8px), -50%); }
+  75% { transform: translate(calc(-50% + 8px), -50%); }
+}
+
+/* ==========================================================================
    RESPONSIVE BREAKPOINTS
    ========================================================================== */
 @media (max-width: 960px) {
   .hero-banner,
   .body-explorer-grid,
+  .body-game-arena,
   .respiratory-interactive-grid,
   .stamina-split,
   .pulse-lab-grid,
@@ -1766,3 +2143,14 @@ progress::-moz-progress-bar {
     position: static;
   }
 }
+
+@media (max-width: 560px) {
+  .body-drop-slot {
+    min-width: 92px;
+    padding: 0.25rem 0.4rem;
+  }
+  .slot-hint-label {
+    font-size: 0.64rem;
+  }
+}
+

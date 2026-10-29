@@ -36,6 +36,7 @@
 
     <nav class="scrollspy-nav" aria-label="Missões de Estudo">
       <a href="#mundo-1" class="nav-pill">🫀 1. Corpo &amp; Respiração</a>
+      <a href="#game-corpo" class="nav-pill nav-pill-game">🧩 Game: Monte o Corpo!</a>
       <a href="#mundo-2" class="nav-pill">🍎 2. Saúde, Stamina &amp; Pulso</a>
       <a href="#mundo-3" class="nav-pill">🕌 3. Unit 6: In Istanbul</a>
       <a href="#mundo-4" class="nav-pill">🎭 4. Unit 7: The Story Teller</a>
@@ -54,6 +55,7 @@
           Explore o corpo humano, descubra como os pulmões e o coração funcionam, viaje por Istambul, suba no palco das histórias e visite o Museu do Futuro! Clique nos cartões para ouvir a pronúncia em inglês 🔊 e ganhe estrelas ⭐ em cada atividade!
         </p>
         <div class="hero-actions">
+          <a href="#game-corpo" class="btn-game-hero">🧩 Jogar: Monte o Corpo Humano!</a>
           <a href="#mundo-1" class="btn-primary">Começar Aventura 🎮</a>
           <a href="#revisao-rapida" class="btn-secondary">⚡ Revisão Rápida</a>
           <a href="#simulado" class="btn-accent">Ir para o Simulado (15 Questões) 🏆</a>
@@ -404,6 +406,200 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         TELA DO GAME: LABORATÓRIO MONTE O CORPO HUMANO (12 ÓRGÃOS E PARTES)
+         ================================================================= -->
+    <section id="game-corpo" class="study-section theme-game">
+      <div class="section-header">
+        <span class="part-tag">🎮 Game Interativo — ICA: The Human Body</span>
+        <h2>🧩 Laboratório: Monte o Corpo Humano!</h2>
+        <p class="section-intro">
+          Coloque cada uma das <strong>12 partes e órgãos do corpo</strong> no lugar certo! Você pode <strong>arrastar a peça</strong> até o círculo pontilhado no corpo ou <strong>clicar na peça e depois clicar no lugar certo</strong> (ótimo para celular e tablet!).
+        </p>
+      </div>
+
+      <!-- Barra de Controles e Modos do Jogo -->
+      <div class="game-top-bar">
+        <div class="game-modes" role="group" aria-label="Modos de Jogo">
+          <button type="button" class="btn-game-mode active" id="mode-build">
+            🧩 Modo 1: Montar Livre (12/12)
+          </button>
+          <button type="button" class="btn-game-mode" id="mode-mission">
+            🕵️ Modo 2: Missão Detetive (Adivinhe pela Função!)
+          </button>
+        </div>
+
+        <div class="game-scoreboard" aria-live="polite">
+          <span class="score-pill">Encaixados: <strong id="game-placed-count">0</strong> / 12</span>
+          <span class="score-pill streak-pill">Pontos: <strong id="game-score-pts">0</strong> 🏆</span>
+          <button type="button" class="btn-reset-game" id="btn-reset-body-game">🔄 Embaralhar / Jogar de Novo</button>
+        </div>
+      </div>
+
+      <!-- Banner de Missão Detetive / Feedback Ao Vivo -->
+      <div class="game-mission-banner" id="game-mission-banner" aria-live="polite">
+        <span class="mission-icon" id="game-mission-icon">👆</span>
+        <div class="mission-text-wrap">
+          <strong id="game-mission-title">Como jogar:</strong>
+          <p id="game-mission-desc">Arraste um órgão da bandeja ao lado para o ponto certo no corpo, ou clique na peça e depois no círculo correspondente!</p>
+        </div>
+        <button type="button" class="btn-mini-audio" id="game-hint-audio-btn" hidden>🔊 Ouvir Dica</button>
+      </div>
+
+      <!-- Palco Principal do Jogo: Bandeja de Peças + Tabuleiro Anatômico -->
+      <div class="body-game-arena">
+        <!-- Coluna 1: Bandeja de Peças (12 Órgãos Embaralhados) -->
+        <div class="parts-tray-panel">
+          <div class="tray-header">
+            <h3>🧰 Peças do Corpo (<span id="tray-remaining">12</span> restantes)</h3>
+            <small>Arraste pela alça ⠿ ou clique para selecionar</small>
+          </div>
+          <div class="parts-tray-grid" id="parts-tray-grid" role="list" aria-label="Peças do corpo humano para encaixar">
+            <!-- Renderizado dinamicamente pelo script.js -->
+          </div>
+        </div>
+
+        <!-- Coluna 2: Tabuleiro do Corpo Humano com 12 Zonas de Encaixe -->
+        <div class="body-board-panel">
+          <div class="body-board-canvas" id="body-board-canvas">
+            <!-- Ilustração Base do Corpo em Raio-X Amigável -->
+            <svg viewBox="0 0 500 650" class="board-silhouette-svg" aria-hidden="true">
+              <defs>
+                <radialGradient id="boardAura" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#e0f2fe" />
+                  <stop offset="100%" stop-color="#dbeafe" stop-opacity="0.35" />
+                </radialGradient>
+              </defs>
+              <circle cx="250" cy="325" r="235" fill="url(#boardAura)" />
+
+              <!-- Silhueta Infantil Sorridente -->
+              <!-- Pernas -->
+              <rect x="192" y="395" width="46" height="175" rx="23" fill="#fed7aa" stroke="#ea580c" stroke-width="3.5" />
+              <rect x="262" y="395" width="46" height="175" rx="23" fill="#fed7aa" stroke="#ea580c" stroke-width="3.5" />
+              <!-- Tênis -->
+              <rect x="176" y="560" width="64" height="26" rx="12" fill="#38bdf8" stroke="#0284c7" stroke-width="3" />
+              <rect x="260" y="560" width="64" height="26" rx="12" fill="#38bdf8" stroke="#0284c7" stroke-width="3" />
+
+              <!-- Braços -->
+              <rect x="108" y="215" width="42" height="155" rx="21" transform="rotate(16 129 215)" fill="#fed7aa" stroke="#ea580c" stroke-width="3.5" />
+              <rect x="350" y="215" width="42" height="155" rx="21" transform="rotate(-16 371 215)" fill="#fed7aa" stroke="#ea580c" stroke-width="3.5" />
+
+              <!-- Tronco (Janela Anatômica) -->
+              <rect x="166" y="200" width="168" height="210" rx="34" fill="#f8fafc" stroke="#0284c7" stroke-width="4" stroke-dasharray="8 4" />
+
+              <!-- Pescoço -->
+              <rect x="230" y="168" width="40" height="40" rx="10" fill="#fed7aa" stroke="#ea580c" stroke-width="3" />
+
+              <!-- Cabeça -->
+              <circle cx="250" cy="108" r="72" fill="#fed7aa" stroke="#ea580c" stroke-width="4" />
+              <!-- Cabelo -->
+              <path d="M180 94 c12 -58 128 -58 140 0 c-24 -18 -50 -22 -70 -20 c-22 -2 -46 2 -70 20 z" fill="#451a03" />
+              <!-- Olhos -->
+              <circle cx="222" cy="105" r="6.5" fill="#1e293b" />
+              <circle cx="278" cy="105" r="6.5" fill="#1e293b" />
+              <circle cx="220" cy="103" r="2.2" fill="#ffffff" />
+              <circle cx="276" cy="103" r="2.2" fill="#ffffff" />
+
+              <!-- Linhas Guia Pontilhadas dos Slots para o Corpo -->
+              <!-- Brain (top center) -->
+              <line x1="250" y1="45" x2="250" y2="75" stroke="#ec4899" stroke-width="2.5" stroke-dasharray="5 5" />
+              <!-- Head (top left) -->
+              <line x1="105" y1="88" x2="182" y2="88" stroke="#0284c7" stroke-width="2.5" stroke-dasharray="5 5" />
+              <!-- Nose (top right) -->
+              <line x1="395" y1="108" x2="255" y2="118" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="5 5" />
+              <!-- Mouth (upper right) -->
+              <line x1="395" y1="168" x2="262" y2="144" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="5 5" />
+              <!-- Trachea (upper left) -->
+              <line x1="105" y1="185" x2="245" y2="195" stroke="#06b6d4" stroke-width="2.5" stroke-dasharray="5 5" />
+              <!-- Lungs (mid-upper left) -->
+              <line x1="105" y1="258" x2="215" y2="258" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="5 5" />
+              <!-- Heart (mid-upper right) -->
+              <line x1="395" y1="252" x2="262" y2="268" stroke="#e11d48" stroke-width="2.5" stroke-dasharray="5 5" />
+              <!-- Arms (mid left) -->
+              <line x1="95" y1="340" x2="122" y2="305" stroke="#d97706" stroke-width="2.5" stroke-dasharray="5 5" />
+              <!-- Stomach (mid right) -->
+              <line x1="395" y1="338" x2="265" y2="338" stroke="#eab308" stroke-width="2.5" stroke-dasharray="5 5" />
+              <!-- Muscles (lower left) -->
+              <line x1="105" y1="438" x2="205" y2="455" stroke="#f43f5e" stroke-width="2.5" stroke-dasharray="5 5" />
+              <!-- Bones (lower right) -->
+              <line x1="395" y1="438" x2="288" y2="455" stroke="#64748b" stroke-width="2.5" stroke-dasharray="5 5" />
+              <!-- Legs (bottom center) -->
+              <line x1="250" y1="595" x2="250" y2="520" stroke="#10b981" stroke-width="2.5" stroke-dasharray="5 5" />
+            </svg>
+
+            <!-- 12 Zonas de Encaixe (Dropzones) posicionadas ao redor e sobre o corpo -->
+            <button type="button" class="body-drop-slot" data-slot="Brain" style="--slot-x: 50%; --slot-y: 7%;">
+              <span class="slot-placeholder">?</span>
+              <span class="slot-hint-label">Topo da cabeça (Controla pensamentos)</span>
+            </button>
+
+            <button type="button" class="body-drop-slot" data-slot="Head" style="--slot-x: 18%; --slot-y: 14%;">
+              <span class="slot-placeholder">?</span>
+              <span class="slot-hint-label">Protege o cérebro</span>
+            </button>
+
+            <button type="button" class="body-drop-slot" data-slot="Nose" style="--slot-x: 82%; --slot-y: 16%;">
+              <span class="slot-placeholder">?</span>
+              <span class="slot-hint-label">Respirar e cheirar</span>
+            </button>
+
+            <button type="button" class="body-drop-slot" data-slot="Mouth" style="--slot-x: 82%; --slot-y: 26%;">
+              <span class="slot-placeholder">?</span>
+              <span class="slot-hint-label">Comer e falar</span>
+            </button>
+
+            <button type="button" class="body-drop-slot" data-slot="Trachea" style="--slot-x: 18%; --slot-y: 28%;">
+              <span class="slot-placeholder">?</span>
+              <span class="slot-hint-label">Tubo que conduz o ar</span>
+            </button>
+
+            <button type="button" class="body-drop-slot" data-slot="Lungs" style="--slot-x: 18%; --slot-y: 40%;">
+              <span class="slot-placeholder">?</span>
+              <span class="slot-hint-label">Órgãos da respiração</span>
+            </button>
+
+            <button type="button" class="body-drop-slot" data-slot="Heart" style="--slot-x: 82%; --slot-y: 39%;">
+              <span class="slot-placeholder">?</span>
+              <span class="slot-hint-label">Bombeia o sangue</span>
+            </button>
+
+            <button type="button" class="body-drop-slot" data-slot="Arms" style="--slot-x: 16%; --slot-y: 53%;">
+              <span class="slot-placeholder">?</span>
+              <span class="slot-hint-label">Levantar objetos</span>
+            </button>
+
+            <button type="button" class="body-drop-slot" data-slot="Stomach" style="--slot-x: 82%; --slot-y: 52%;">
+              <span class="slot-placeholder">?</span>
+              <span class="slot-hint-label">Digestão dos alimentos</span>
+            </button>
+
+            <button type="button" class="body-drop-slot" data-slot="Muscles" style="--slot-x: 18%; --slot-y: 68%;">
+              <span class="slot-placeholder">?</span>
+              <span class="slot-hint-label">Permitem movimentos</span>
+            </button>
+
+            <button type="button" class="body-drop-slot" data-slot="Bones" style="--slot-x: 82%; --slot-y: 68%;">
+              <span class="slot-placeholder">?</span>
+              <span class="slot-hint-label">Sustentam e protegem</span>
+            </button>
+
+            <button type="button" class="body-drop-slot" data-slot="Legs" style="--slot-x: 50%; --slot-y: 91%;">
+              <span class="slot-placeholder">?</span>
+              <span class="slot-hint-label">Andar e correr</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Celebração de Vitória do Game -->
+      <div id="body-game-victory" class="quiz-report-card" hidden>
+        <div class="report-trophy">🎉🏅🧠🫀</div>
+        <h3>Incrível! Você Montou Todo o Corpo Humano!</h3>
+        <p id="body-game-victory-text">Você encaixou todos os 12 órgãos e partes do corpo humano corretamente e ganhou +10 Estrelas Bônus!</p>
+        <button type="button" id="btn-play-again-victory" class="btn-primary">Jogar Novamente 🔄</button>
       </div>
     </section>
 

@@ -649,3 +649,390 @@ if (btnResetQuiz) btnResetQuiz.addEventListener('click', resetQuiz);
 if (btnRetryBottom) btnRetryBottom.addEventListener('click', resetQuiz);
 
 renderQuiz();
+
+// =========================================================================
+// GAME: LABORATÓRIO MONTE O CORPO HUMANO (12 ÓRGÃOS E PARTES)
+// =========================================================================
+const BODY_GAME_PARTS = [
+  { id: 'Head', en: 'Head', pt: 'Cabeça', fn: 'Protege o cérebro, que controla o corpo.', icon: '🙂' },
+  { id: 'Brain', en: 'Brain', pt: 'Cérebro', fn: 'Controla pensamentos e movimentos.', icon: '🧠' },
+  { id: 'Heart', en: 'Heart', pt: 'Coração', fn: 'Bombeia o sangue.', icon: '❤️' },
+  { id: 'Lungs', en: 'Lungs', pt: 'Pulmões', fn: 'Ajudam na respiração.', icon: '🫁' },
+  { id: 'Nose', en: 'Nose', pt: 'Nariz', fn: 'Ajuda a respirar e sentir cheiros.', icon: '👃' },
+  { id: 'Mouth', en: 'Mouth', pt: 'Boca', fn: 'Ajuda a comer e falar.', icon: '👄' },
+  { id: 'Trachea', en: 'Trachea', pt: 'Traqueia', fn: 'Conduz o ar até os brônquios.', icon: '🌬️' },
+  { id: 'Stomach', en: 'Stomach', pt: 'Estômago', fn: 'Ajuda na digestão dos alimentos.', icon: '🍽️' },
+  { id: 'Arms', en: 'Arms', pt: 'Braços', fn: 'Ajudam a levantar e carregar objetos.', icon: '💪' },
+  { id: 'Legs', en: 'Legs', pt: 'Pernas', fn: 'Ajudam a ficar em pé, andar e correr.', icon: '🦵' },
+  { id: 'Muscles', en: 'Muscles', pt: 'Músculos', fn: 'Permitem os movimentos.', icon: '🏃' },
+  { id: 'Bones', en: 'Bones', pt: 'Ossos', fn: 'Sustentam e protegem o corpo.', icon: '🦴' }
+];
+
+const trayGridEl = document.getElementById('parts-tray-grid');
+const trayRemainingEl = document.getElementById('tray-remaining');
+const gamePlacedCountEl = document.getElementById('game-placed-count');
+const gameScorePtsEl = document.getElementById('game-score-pts');
+const modeBuildBtn = document.getElementById('mode-build');
+const modeMissionBtn = document.getElementById('mode-mission');
+const resetBodyGameBtn = document.getElementById('btn-reset-body-game');
+const playAgainVictoryBtn = document.getElementById('btn-play-again-victory');
+const missionIconEl = document.getElementById('game-mission-icon');
+const missionTitleEl = document.getElementById('game-mission-title');
+const missionDescEl = document.getElementById('game-mission-desc');
+const hintAudioBtn = document.getElementById('game-hint-audio-btn');
+const victoryBannerEl = document.getElementById('body-game-victory');
+const dropSlots = document.querySelectorAll('.body-drop-slot');
+
+let bodyGameMode = 'build'; // 'build' | 'mission'
+let selectedPieceId = null;
+let placedPartsSet = new Set();
+let bodyGameScore = 0;
+let missionQueue = [];
+let currentMissionTarget = null;
+
+function shuffleArray(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function initBodyGame() {
+  if (!trayGridEl) return;
+  placedPartsSet.clear();
+  selectedPieceId = null;
+  bodyGameScore = 0;
+  if (victoryBannerEl) victoryBannerEl.hidden = true;
+
+  // Reset all 12 drop slots on the body board
+  dropSlots.forEach(slot => {
+    const slotId = slot.dataset.slot;
+    const partData = BODY_GAME_PARTS.find(p => p.id === slotId);
+    slot.classList.remove('slot-filled', 'slot-wrong', 'drop-hover');
+    slot.disabled = false;
+    slot.innerHTML = `
+      <span class="slot-placeholder">?</span>
+      <span class="slot-hint-label">${partData ? partData.fn : ''}</span>
+    `;
+  });
+
+  // Render shuffled tray pieces
+  const shuffled = shuffleArray(BODY_GAME_PARTS);
+  trayGridEl.innerHTML = '';
+
+  shuffled.forEach(part => {
+    const card = document.createElement('div');
+    card.className = 'game-piece-card';
+    card.dataset.piece = part.id;
+    card.setAttribute('role', 'listitem');
+
+    // Dedicated drag handle following Modern Web Guidance `drag`
+    const handle = document.createElement('div');
+    handle.className = 'drag-handle';
+    handle.tabIndex = 0;
+    handle.setAttribute('aria-label', `Arrastar ${part.en} (${part.pt}) ou usar setas do teclado`);
+    handle.title = 'Arraste para o corpo';
+    handle.textContent = '⠿';
+
+    // Select button for click/tap-to-place
+    const selectBtn = document.createElement('button');
+    selectBtn.type = 'button';
+    selectBtn.className = 'piece-select-btn';
+    selectBtn.innerHTML = `
+      <strong>${part.icon} ${part.en}</strong>
+      <span>${part.pt}</span>
+    `;
+
+    selectBtn.addEventListener('click', () => {
+      selectBodyPiece(part.id);
+    });
+
+    setupPointerDrag(handle, card, part);
+
+    card.append(handle, selectBtn);
+    trayGridEl.appendChild(card);
+  });
+
+  // Prepare Detective Mission Queue if in mission mode
+  missionQueue = shuffleArray(BODY_GAME_PARTS);
+  currentMissionTarget = missionQueue[0] || null;
+
+  updateBodyGameUI();
+}
+
+function selectBodyPiece(partId) {
+  if (placedPartsSet.has(partId)) return;
+  selectedPieceId = partId;
+  const part = BODY_GAME_PARTS.find(p => p.id === partId);
+
+  document.querySelectorAll('.game-piece-card').forEach(card => {
+    card.classList.toggle('selected-piece', card.dataset.piece === partId);
+  });
+
+  if (part) {
+    speakEnglish(part.en);
+    if (bodyGameMode === 'build') {
+      setBannerMessage(
+        part.icon,
+        `Peça selecionada: ${part.en} (${part.pt})`,
+        `Dica de função: "${part.fn}" — Agora clique no círculo certo no corpo!`
+      );
+    }
+  }
+}
+
+function setBannerMessage(icon, title, desc) {
+  if (missionIconEl) missionIconEl.textContent = icon;
+  if (missionTitleEl) missionTitleEl.textContent = title;
+  if (missionDescEl) missionDescEl.textContent = desc;
+}
+
+function updateBodyGameUI() {
+  const placedCount = placedPartsSet.size;
+  const remaining = BODY_GAME_PARTS.length - placedCount;
+
+  if (gamePlacedCountEl) gamePlacedCountEl.textContent = String(placedCount);
+  if (trayRemainingEl) trayRemainingEl.textContent = String(remaining);
+  if (gameScorePtsEl) gameScorePtsEl.textContent = String(bodyGameScore);
+
+  if (placedCount === BODY_GAME_PARTS.length) {
+    if (victoryBannerEl) {
+      victoryBannerEl.hidden = false;
+      victoryBannerEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    setBannerMessage(
+      '🏆',
+      'Parabéns! Corpo Humano 100% Montado!',
+      'Você colocou todos os 12 órgãos e partes no lugar certo! Clique em "Jogar de Novo" para praticar mais.'
+    );
+    if (hintAudioBtn) hintAudioBtn.hidden = true;
+    awardStar('body-game-complete-bonus', 10);
+    speakEnglish('Congratulations! You completed the human body!');
+    return;
+  }
+
+  if (bodyGameMode === 'mission') {
+    currentMissionTarget = missionQueue.find(p => !placedPartsSet.has(p.id)) || null;
+    if (currentMissionTarget) {
+      setBannerMessage(
+        '🕵️',
+        `Missão Detetive (${placedCount + 1} de 12): Qual órgão tem esta função?`,
+        `👉 "${currentMissionTarget.fn}" — Encontre a peça certa e coloque no lugar dela no corpo!`
+      );
+      if (hintAudioBtn) {
+        hintAudioBtn.hidden = false;
+        hintAudioBtn.onclick = () => speakEnglish(currentMissionTarget.en);
+      }
+    }
+  } else {
+    if (hintAudioBtn) hintAudioBtn.hidden = true;
+    if (!selectedPieceId) {
+      setBannerMessage(
+        '👆',
+        'Modo Montar Livre:',
+        'Arraste qualquer órgão pela alça ⠿ até o corpo, ou clique na peça e depois clique no espaço certo!'
+      );
+    }
+  }
+}
+
+function attemptPlaceOrgan(pieceId, targetSlotEl) {
+  if (!pieceId || !targetSlotEl) return;
+  const slotId = targetSlotEl.dataset.slot;
+  if (placedPartsSet.has(slotId)) return;
+
+  const part = BODY_GAME_PARTS.find(p => p.id === pieceId);
+  if (!part) return;
+
+  // Check if in Detective Mission mode and user tried a different organ than the mission clue
+  if (bodyGameMode === 'mission' && currentMissionTarget && pieceId !== currentMissionTarget.id) {
+    targetSlotEl.classList.add('slot-wrong');
+    setTimeout(() => targetSlotEl.classList.remove('slot-wrong'), 450);
+    setBannerMessage(
+      '🔎',
+      'Quase lá! Leia a pista da Missão Detetive:',
+      `Procuramos o órgão que: "${currentMissionTarget.fn}". Tente escolher essa peça!`
+    );
+    return;
+  }
+
+  if (pieceId === slotId) {
+    // Correct match!
+    placedPartsSet.add(slotId);
+    bodyGameScore += 10;
+    selectedPieceId = null;
+
+    targetSlotEl.classList.remove('slot-wrong', 'drop-hover');
+    targetSlotEl.classList.add('slot-filled');
+    targetSlotEl.innerHTML = `
+      <span class="slot-placeholder">${part.icon} ${part.en}</span>
+      <span class="slot-hint-label">✅ ${part.pt}</span>
+    `;
+
+    const pieceCard = document.querySelector(`.game-piece-card[data-piece="${pieceId}"]`);
+    if (pieceCard) {
+      pieceCard.classList.remove('selected-piece');
+      pieceCard.classList.add('placed-piece');
+    }
+
+    speakEnglish(`${part.en}.`);
+    awardStar(`game-placed-${part.id}`, 1);
+
+    if (bodyGameMode === 'build') {
+      setBannerMessage(
+        '🌟',
+        `Muito bem! ${part.en} (${part.pt}) encaixado!`,
+        `Função: ${part.fn}`
+      );
+    }
+    updateBodyGameUI();
+  } else {
+    // Wrong slot
+    bodyGameScore = Math.max(0, bodyGameScore - 2);
+    if (gameScorePtsEl) gameScorePtsEl.textContent = String(bodyGameScore);
+    targetSlotEl.classList.add('slot-wrong');
+    setTimeout(() => targetSlotEl.classList.remove('slot-wrong'), 450);
+
+    setBannerMessage(
+      '💡',
+      `Ops! Esse não é o lugar de ${part.en} (${part.pt})!`,
+      `Lembre-se: ${part.en} (${part.pt}) → "${part.fn}". Tente outro círculo no corpo!`
+    );
+  }
+}
+
+// Click on a drop slot to place the currently selected piece (or hear an already placed organ)
+dropSlots.forEach(slot => {
+  slot.addEventListener('click', () => {
+    const slotId = slot.dataset.slot;
+    if (placedPartsSet.has(slotId)) {
+      const part = BODY_GAME_PARTS.find(p => p.id === slotId);
+      if (part) speakEnglish(part.en);
+      return;
+    }
+    if (!selectedPieceId) {
+      setBannerMessage(
+        '👈',
+        'Selecione uma peça primeiro!',
+        'Clique em um dos órgãos na bandeja "Peças do Corpo" à esquerda ou arraste-o até aqui!'
+      );
+      return;
+    }
+    attemptPlaceOrgan(selectedPieceId, slot);
+  });
+});
+
+// Pointer Dragging with setPointerCapture & Viewport Clamping (Modern Web Guidance `drag`)
+function setupPointerDrag(handle, card, part) {
+  let avatar = null;
+  let offsetX = 0;
+  let offsetY = 0;
+  let startX = 0;
+  let startY = 0;
+
+  function moveAvatarTo(left, top) {
+    if (!avatar) return;
+    const maxLeft = Math.max(0, window.innerWidth - avatar.offsetWidth);
+    const maxTop = Math.max(0, window.innerHeight - avatar.offsetHeight);
+    avatar.style.left = `${Math.max(0, Math.min(left, maxLeft))}px`;
+    avatar.style.top = `${Math.max(0, Math.min(top, maxTop))}px`;
+  }
+
+  function findHoveredSlot(clientX, clientY) {
+    let found = null;
+    dropSlots.forEach(slot => {
+      if (placedPartsSet.has(slot.dataset.slot)) return;
+      const r = slot.getBoundingClientRect();
+      if (clientX >= r.left && clientX <= r.right && clientY >= r.top && clientY <= r.bottom) {
+        found = slot;
+      }
+    });
+    return found;
+  }
+
+  handle.addEventListener('pointerdown', (event) => {
+    if (event.button !== 0 || placedPartsSet.has(part.id)) return;
+    selectBodyPiece(part.id);
+    startX = event.clientX;
+    startY = event.clientY;
+    const rect = card.getBoundingClientRect();
+    offsetX = event.clientX - rect.left;
+    offsetY = event.clientY - rect.top;
+    handle.setPointerCapture(event.pointerId);
+  });
+
+  handle.addEventListener('pointermove', (event) => {
+    if (!handle.hasPointerCapture(event.pointerId)) return;
+    const dist = Math.hypot(event.clientX - startX, event.clientY - startY);
+    if (!avatar && dist < 4) return;
+
+    if (!avatar) {
+      handle.classList.add('dragging');
+      avatar = document.createElement('div');
+      avatar.className = 'floating-drag-avatar';
+      avatar.innerHTML = `<span>${part.icon}</span> <strong>${part.en}</strong> <small>(${part.pt})</small>`;
+      document.body.appendChild(avatar);
+    }
+
+    moveAvatarTo(event.clientX - offsetX, event.clientY - offsetY);
+
+    dropSlots.forEach(s => s.classList.remove('drop-hover'));
+    const hoveredSlot = findHoveredSlot(event.clientX, event.clientY);
+    if (hoveredSlot) hoveredSlot.classList.add('drop-hover');
+  });
+
+  function finishPointerDrag(event) {
+    handle.classList.remove('dragging');
+    dropSlots.forEach(s => s.classList.remove('drop-hover'));
+    if (avatar) {
+      avatar.remove();
+      avatar = null;
+      if (event && typeof event.clientX === 'number') {
+        const targetSlot = findHoveredSlot(event.clientX, event.clientY);
+        if (targetSlot) {
+          attemptPlaceOrgan(part.id, targetSlot);
+        }
+      }
+    }
+  }
+
+  handle.addEventListener('pointerup', finishPointerDrag);
+  handle.addEventListener('lostpointercapture', () => finishPointerDrag(null));
+
+  // Keyboard accessibility on handle: Enter/Space selects piece; Arrow keys cycle drop slots
+  handle.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      selectBodyPiece(part.id);
+    } else if (['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp'].includes(event.key)) {
+      event.preventDefault();
+      selectBodyPiece(part.id);
+      const firstOpenSlot = Array.from(dropSlots).find(s => !placedPartsSet.has(s.dataset.slot));
+      if (firstOpenSlot) firstOpenSlot.focus();
+    }
+  });
+}
+
+if (modeBuildBtn && modeMissionBtn) {
+  modeBuildBtn.addEventListener('click', () => {
+    bodyGameMode = 'build';
+    modeBuildBtn.classList.add('active');
+    modeMissionBtn.classList.remove('active');
+    initBodyGame();
+  });
+
+  modeMissionBtn.addEventListener('click', () => {
+    bodyGameMode = 'mission';
+    modeMissionBtn.classList.add('active');
+    modeBuildBtn.classList.remove('active');
+    initBodyGame();
+  });
+}
+
+if (resetBodyGameBtn) resetBodyGameBtn.addEventListener('click', initBodyGame);
+if (playAgainVictoryBtn) playAgainVictoryBtn.addEventListener('click', initBodyGame);
+
+initBodyGame();
+
